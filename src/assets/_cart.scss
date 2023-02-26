@@ -1,0 +1,133 @@
+.timeline-spot {
+    display: block;
+    position: absolute;
+    z-index: 5;
+    top: -5px;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: $secondary;
+    border: 3px solid $white;
+    box-shadow: 0px 4px 4px #bdbbb3;
+    i{
+        display: none;
+    }
+    &-current {
+        background-color: $primary;
+    }
+
+    &-done {
+        background-color: $primary;
+        i{
+            display: block;
+            margin-top: 4px;
+        }
+    }
+  
+}
+
+.timeline{
+    position: relative;
+    &::after{
+        position: absolute;
+        content: "";
+        border: 2px solid $white;
+        background:$secondary;
+        box-shadow: 0px 4px 4px #bdbbb3;
+        height: 6px;
+        left:0;
+        right:0;
+        top:-38px;
+    }
+    &-active{
+        &::after{
+            background: linear-gradient(to right, $primary 50%, $secondary 50%);
+        }
+    }
+    &-finish{
+        &::after{
+            background: $primary;
+        }
+    }
+}
+
+.timeline-pointer{
+    position: relative;
+    &::before{
+        position: absolute;
+        content:"";
+        background-color: $secondary;
+        border: 3px solid $white;
+        box-shadow: 0px 4px 4px #bdbbb3;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        left: 40%;
+        top:-50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index:5;
+    }
+    &-first::before{
+        content:"1";
+    }
+    &-second::before{
+        content:"2";
+    }
+    &-third::before{
+        content:"3";
+    }
+    &-fourth::before{
+        content:"4";
+    }
+    &-finish::before{
+        content:"✓";
+        background: $primary;
+    }
+    &-active{
+        &::before{
+            background: $primary;
+        }
+    }
+    @include media-breakpoint-up(md){
+        &::before{
+            left: 45%;
+        }
+    }
+}
+
+.icon-ticket{
+    position: absolute;
+    top: -20%;
+    left: 27%;
+    @include media-breakpoint-up(md){
+        top: -25%;
+        left: 35%;
+    }
+    // @include media-breakpoint-up(lg){
+    //     left: 39%;
+    // }
+}
+
+.title-bg{
+    position: relative;
+    &::after{
+        position: absolute;
+        content: "";
+        width: 30%;
+        height: 15px;
+        left: 35%;
+        top: 60%;
+        background: $primary;
+        z-index:-2;
+    }
+}
+
+.delete-icon{
+    position: absolute;
+    top: 10px;
+    right: 0;
+    z-index:10;
+}
