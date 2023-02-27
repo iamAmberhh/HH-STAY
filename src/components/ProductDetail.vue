@@ -1,26 +1,42 @@
 <template>
   <!-- 圖片輪播 -->
-  <!-- <section class="container mt-max">
-    <Swiper
+  <section class="container mt-max">
+    <swiper
       class="product-img"
+      grabCursor
+      centeredSlides
+      :pagination="pagination"
+      :modules="modules"
       :loop="true"
       :slidesPerView="1"
-      :spaceBetween="10"
+      :spaceBetween="15"
       :breakpoints="{
         768: {
-          slidesPerView: 2,
-        },
-        992: {
-          slidesPerView: 3,
-          spaceBetween: 15,
+          slidesPerView: 1.5,
+          spaceBetween: 25,
         },
       }"
     >
-      <SwiperSlide v-for="img in product.imagesUrl" :key="img">
-        <img :src="img" alt="img" class="rounded-3 object-fit-cover" />
-      </SwiperSlide>
-    </Swiper>
-  </section> -->
+      <swiper-slide>
+        <div>
+          <img
+            :src="product.imageUrl"
+            :alt="img"
+            class="rounded-2 object-fit-cover shadow-sm"
+          />
+        </div>
+      </swiper-slide>
+      <swiper-slide v-for="img in product.imagesUrl" :key="img">
+        <div>
+          <img
+            :src="img"
+            :alt="img"
+            class="rounded-2 object-fit-cover shadow-sm"
+          />
+        </div>
+      </swiper-slide>
+    </swiper>
+  </section>
 
   <!-- 產品訊息 -->
   <section class="container my-5 my-lg-max">
@@ -183,13 +199,18 @@
               <li>請務必於票券使用當日，出示QR code進行兌換，逾期失效</li>
             </ul>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9591.764147743163!2d120.69637101158548!3d22.044592295685387!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3471b9c4a1c1e32f%3A0x3fc2d412a3a7a1c4!2z5ZyL56uL5rW35rSL55Sf54mp5Y2a54mp6aSo!5e0!3m2!1szh-TW!2stw!4v1672914605870!5m2!1szh-TW!2stw"
+              v-if="product.mapUrl"
               width="100%"
               height="300"
               style="border: 0"
+              frameborder="0"
+              scrolling="no"
+              marginheight="0"
+              marginwidth="0"
               allowfullscreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
+              :src="`${product.mapUrl}`"
             ></iframe>
           </div>
         </div>
@@ -310,19 +331,168 @@
     >
       立即選購
     </button>
+    <div
+      class="modal fade"
+      id="purchaseModal"
+      tabindex="-1"
+      aria-labelledby="purchaseModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-fullscreen-sm-down">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="purchaseModal">{{ product.title }}</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p class="card-text text-center mb-3 bg-light rounded-2">
+              TWD<span class="fs-2 fw-blod m-1 text-black text-shadow">{{
+                product.price
+              }}</span
+              >起
+            </p>
+            <form action="">
+              <div class="mb-3">
+                <label for="date" class="form-label">使用日期：</label>
+                <flatPickr
+                  v-if="product.category !== '住宿'"
+                  class="border-primary form-control flatpickr flatpickr-input fs-5 text-center"
+                  placeholder="請選擇使用日期"
+                  id="date"
+                  v-model="date"
+                  :config="flatpickrConfig"
+                ></flatPickr>
+                <p v-else class="form-control fs-5 text-center">
+                  請自行電話預定
+                </p>
+              </div>
+              <p class="mb-3">選擇人數：</p>
+              <ul class="mb-5">
+                <li class="mb-3 d-flex align-items-center">
+                  <label
+                    :for="product.ticketA"
+                    class="form-label w-100 mb-0 me-4"
+                    >{{ product.ticketA }}
+                    <span class="text-secondary"
+                      >$ {{ product.ticketA_price }}/{{ product.unit }}</span
+                    >
+                  </label>
+                  <div class="d-flex justify-content-center">
+                    <button type="button" class="border-0 bg-white fs-6">
+                      <font-awesome-icon
+                        icon="fa-solid fa-minus"
+                        class="border-primary border border-2 text-dark rounded-circle p-1"
+                        @click="changeQty('ticketA', 'minus')"
+                      />
+                    </button>
+                    <input
+                      type="text"
+                      name="adult-ticket"
+                      id="adult-ticket"
+                      class="form-control w-25 border-0 mx-1 p-0 fs-3 text-center"
+                      v-model="ticketA_qty"
+                    />
+                    <button type="button" class="border-0 bg-white fs-6">
+                      <font-awesome-icon
+                        icon="fa-solid fa-plus"
+                        class="border-primary border border-2 text-dark rounded-circle p-1"
+                        @click="changeQty('ticketA', 'plus')"
+                      />
+                    </button>
+                  </div>
+                </li>
+                <li
+                  v-if="product.ticketB"
+                  class="mb-3 d-flex align-items-center"
+                >
+                  <label
+                    :for="product.ticketB"
+                    class="form-label w-100 mb-0 me-4"
+                    >{{ product.ticketB }}
+                    <span class="text-secondary"
+                      >$ {{ product.ticketB_price }}/{{ product.unit }}</span
+                    >
+                  </label>
+                  <div class="d-flex justify-content-center">
+                    <button type="button" class="border-0 bg-white fs-6">
+                      <font-awesome-icon
+                        icon="fa-solid fa-minus"
+                        class="border-primary border border-2 text-dark rounded-circle p-1"
+                        @click="changeQty('ticketB', 'minus')"
+                      />
+                    </button>
+                    <input
+                      type="text"
+                      name="adult-ticket"
+                      id="adult-ticket"
+                      class="form-control w-25 border-0 mx-1 p-0 fs-3 text-center"
+                      v-model="ticketB_qty"
+                    />
+                    <button type="button" class="border-0 bg-white fs-6">
+                      <font-awesome-icon
+                        icon="fa-solid fa-plus"
+                        class="border-primary border border-2 text-dark rounded-circle p-1"
+                        @click="changeQty('ticketB', 'plus')"
+                      />
+                    </button>
+                  </div>
+                </li>
+              </ul>
+              <div></div>
+              <div class="text-center">
+                <button
+                  type="button"
+                  @click="
+                    addToCart(
+                      product.id,
+                      ticketA_qty,
+                      ticketB_qty,
+                      date,
+                      product.ticketA_price,
+                      product.ticketB_price
+                    )
+                  "
+                  data-bs-dismiss="modal"
+                  class="btn btn-primary text-dark w-75 fs-5"
+                >
+                  加入購物車
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
 import Tab from "bootstrap/js/dist/tab";
+import Modal from "bootstrap/js/dist/modal";
 import productStore from "../stores/productStore";
 import cartStore from "../stores/cartStore";
 import { mapState, mapActions } from "pinia";
 import xss from "xss";
-// import { Swiper, SwiperSlide } from "swiper/vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Pagination } from "swiper";
+// Import Swiper styles
+import "swiper/scss";
+import "swiper/scss/navigation";
+import "swiper/scss/pagination";
 export default {
   data() {
     return {
+      modules: [Pagination],
+      pagination: {
+        clickable: true,
+        // el: ".swiper-pagination",
+        dynamicBullets: true,
+      },
       description: "",
       date: null,
       daysOfWeek: [],
@@ -412,8 +582,8 @@ export default {
     },
   },
   components: {
-    // Swiper,
-    // SwiperSlide,
+    Swiper,
+    SwiperSlide,
   },
   mounted() {
     const id = this.$route.params.id;
@@ -421,3 +591,8 @@ export default {
   },
 };
 </script>
+<style>
+.swiper-slide {
+  height: auto;
+}
+</style>

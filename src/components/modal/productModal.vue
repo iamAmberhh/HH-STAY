@@ -25,13 +25,6 @@
               <label for="title" class="form-label"
                 >標題<span class="text-danger"> *</span></label
               >
-              <!-- <input
-                id="title"
-                type="text"
-                class="form-control"
-                placeholder="請輸入標題"
-                v-model="selectProduct.data.title"
-              /> -->
               <VField
                 id="title"
                 name="標題"
@@ -66,13 +59,20 @@
                 <label for="unit" class="form-label"
                   >單位<span class="text-danger"> *</span></label
                 >
-                <input
+                <VField
                   id="unit"
+                  name="單位"
                   type="text"
                   class="form-control"
+                  :class="{ 'is-invalid': errors['單位'] }"
                   placeholder="請輸入單位"
+                  rules="required"
                   v-model="selectProduct.data.unit"
-                />
+                ></VField>
+                <ErrorMessage
+                  name="單位"
+                  class="invalid-feedback"
+                ></ErrorMessage>
               </div>
             </div>
             <div class="row">
@@ -82,8 +82,8 @@
                 >
                 <input
                   id="origin_price"
-                  type="number"
                   min="0"
+                  type="number"
                   class="form-control"
                   placeholder="請輸入原價"
                   v-model="selectProduct.data.origin_price"
@@ -95,10 +95,10 @@
                 >
                 <input
                   id="price"
-                  type="number"
                   min="0"
+                  type="number"
                   class="form-control"
-                  placeholder="請輸入售價"
+                  placeholder="請輸入最低售價"
                   v-model="selectProduct.data.price"
                 />
               </div>
@@ -108,36 +108,60 @@
                 <label for="area" class="form-label"
                   >地區<span class="text-danger"> *</span></label
                 >
-                <input
+                <VField
                   id="area"
+                  name="地區"
                   type="text"
                   class="form-control"
+                  :class="{ 'is-invalid': errors['地區'] }"
                   placeholder="請輸入地區"
+                  rules="required"
                   v-model="selectProduct.data.area"
-                />
+                ></VField>
+                <ErrorMessage
+                  name="地區"
+                  class="invalid-feedback"
+                ></ErrorMessage>
               </div>
               <div class="mb-3 col-md-6">
                 <label for="address" class="form-label"
                   >使用地點<span class="text-danger"> *</span></label
                 >
-                <input
+                <VField
                   id="address"
+                  name="兌換地點"
                   type="text"
                   class="form-control"
+                  :class="{ 'is-invalid': errors['兌換地點'] }"
                   placeholder="請輸入兌換地點"
+                  rules="required"
                   v-model="selectProduct.data.address"
+                ></VField>
+                <ErrorMessage
+                  name="兌換地點"
+                  class="invalid-feedback"
+                ></ErrorMessage>
+              </div>
+            </div>
+            <div class="row">
+              <div class="mb-3">
+                <label for="mapUrl" class="form-label">嵌入地圖</label>
+                <input
+                  id="mapUrl"
+                  type="text"
+                  class="form-control"
+                  placeholder="請輸入地圖網址"
+                  v-model="selectProduct.data.mapUrl"
                 />
               </div>
             </div>
             <hr />
             <div class="row">
               <div class="mb-3 col-md-6">
-                <label for="ticket_typeA" class="form-label"
-                  >票種 A<span class="text-danger"> *</span></label
-                >
+                <label for="ticketA" class="form-label">票種 A</label>
                 <select
                   class="form-select"
-                  id="ticket_typeA"
+                  id="ticketA"
                   v-model="selectProduct.data.ticketA"
                 >
                   <option selected disabled>請選擇票種</option>
@@ -151,25 +175,25 @@
                 </select>
               </div>
               <div class="mb-3 col-md-6">
-                <label for="typeA_price" class="form-label"
-                  >票種 A 售價<span class="text-danger"> *</span></label
+                <label for="ticketA_price" class="form-label"
+                  >票種 A 售價</label
                 >
                 <input
-                  id="typeA_price"
-                  type="number"
+                  id="ticketA_price"
                   min="0"
+                  type="number"
                   class="form-control"
-                  placeholder="請輸入售價"
+                  placeholder="請輸入票種 A 售價"
                   v-model="selectProduct.data.ticketA_price"
                 />
               </div>
             </div>
             <div class="row">
               <div class="mb-3 col-md-6">
-                <label for="ticket_typeB" class="form-label">票種 B</label>
+                <label for="ticketB" class="form-label">票種 B</label>
                 <select
                   class="form-select"
-                  id="ticket_typeB"
+                  id="ticketB"
                   v-model="selectProduct.data.ticketB"
                 >
                   <option selected disabled>請選擇票種</option>
@@ -183,9 +207,11 @@
                 </select>
               </div>
               <div class="mb-3 col-md-6">
-                <label for="typeB_price" class="form-label">票種 B 售價</label>
+                <label for="ticketB_price" class="form-label"
+                  >票種 B 售價</label
+                >
                 <input
-                  id="typeB_price"
+                  id="ticketB_price"
                   type="number"
                   min="0"
                   class="form-control"
@@ -260,7 +286,9 @@
             </div>
             <div class="row">
               <div class="mb-3">
-                <p class="form-label">開放日/營業日</p>
+                <p class="form-label">
+                  開放日/營業日<span class="text-danger"> *</span>
+                </p>
                 <div
                   class="form-check form-check-inline"
                   v-for="(day, key) in days"

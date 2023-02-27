@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="navbar navbar-expand-lg navbar-light border-bottom border-2 border-primary shadow-sm fixed-top bg-white"
+    class="navbar navbar-expand-lg navbar-light border-bottom border-2 border-primary shadow-sm fixed-top bg-white py-0"
   >
     <div class="container-fluid">
       <h1>
@@ -13,13 +13,15 @@
         </RouterLink>
       </h1>
       <div class="d-flex">
-        <div class="position-relative">
+        <div
+          class="position-relative"
+          v-if="
+            this.$route.path !== '/cart' &&
+            this.$route.path !== '/cart/info' &&
+            this.$route.path !== '/cart/finish'
+          "
+        >
           <img
-            v-if="
-              this.$route.path !== '/cart' &&
-              this.$route.path !== '/cart/info' &&
-              this.$route.path !== '/cart/finish'
-            "
             src="/image/cart.png"
             alt="cart"
             width="35"
@@ -59,11 +61,11 @@
         >
           <div class="row g-0">
             <div
-              class="col-2 d-flex align-items-center justify-content-center border-end border-1 border-primary"
+              class="d-none d-md-flex col-md-2 d-flex align-items-center justify-content-center border-end border-1 border-primary"
             >
               <span>{{ index + 1 }}</span>
             </div>
-            <div class="col-10">
+            <div class="col-12 col-md-10">
               <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
                   <h5 class="card-title fw-blod ellipsis2 me-2">
@@ -71,7 +73,7 @@
                   </h5>
                   <button
                     @click="removeCartItem(item.id)"
-                    class="btn ms-3 link-secondary"
+                    class="d-none d-md-block btn ms-3 link-secondary"
                   >
                     <font-awesome-icon icon="fa-solid fa-trash-can" />
                   </button>

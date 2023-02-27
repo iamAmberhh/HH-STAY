@@ -136,7 +136,7 @@ export default {
     ...mapState(cartStore, ["orderStatus"]),
   },
   methods: {
-    ...mapActions(cartStore, ["changeStatus"]),
+    ...mapActions(cartStore, ["getCartList","changeStatus"]),
     isPhone(value) {
       const phoneNumber = /^(09)[0-9]{8}$/;
       return phoneNumber.test(value) ? true : "需要正確的手機號碼";
@@ -153,6 +153,7 @@ export default {
           this.orderId = res.data.orderId;
           alert(res.data.message);
           this.changeStatus("pay");
+
         })
         .catch((err) => {
           alert(err.response.data.message);

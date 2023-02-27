@@ -1,5 +1,5 @@
 .cart-hover-block {
-    width: 500px;
+    width: 330px;
     position: fixed;
     right:4%;
     top:10%;
@@ -14,6 +14,9 @@
         right: 10%;
         top: -30px;
         z-index: 1051;
+    }
+    @include media-breakpoint-up(md) {
+        width: 500px;
     }
 }
 

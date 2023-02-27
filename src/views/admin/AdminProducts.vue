@@ -155,7 +155,7 @@ export default {
       ],
       selectProduct: {
         data: {
-          title: "",
+          title: " ",
           category: "",
           origin_price: null,
           price: null,
@@ -197,6 +197,10 @@ export default {
       if (status === "new") {
         this.isNew = true;
         this.selectProduct.data = {
+          title: " ",
+          unit: "",
+          area: "",
+          address: "",
           imagesUrl: [],
           includes: [],
           excludes: [],
@@ -207,7 +211,6 @@ export default {
         this.isNew = false;
         this.selectProduct.data = { ...product };
         this.productId = this.selectProduct.data.id;
-        // this.productId = this.selectProduct.id
         this.productModal.show();
       } else if (status === "delete") {
         this.selectProduct.data = { ...product };
@@ -225,10 +228,6 @@ export default {
       }
       if (product.openDate.length === 0) {
         alert("開放日尚未完成，請再次確認");
-        return;
-      }
-      if (product.ticketA === "" || product.ticketA_price === 0) {
-        alert("票種項目尚未完成，請再次確認");
         return;
       }
       // 選擇編輯按鈕，api會用put
