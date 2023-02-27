@@ -4,7 +4,13 @@
   >
     <div class="container-fluid">
       <h1>
-        <RouterLink to="/" class="h1-logo"> </RouterLink>
+        <RouterLink to="/">
+          <img
+            src="/image/HHSTAY-logo.png"
+            alt="logo"
+            style="height: 50px; width: 200px"
+          />
+        </RouterLink>
       </h1>
       <div class="d-flex">
         <div class="position-relative">
@@ -20,7 +26,9 @@
             class="me-2 me-md-5 cart-btn"
             @mouseenter="showCartBlock()"
           />
-          <div v-if="cartLength" class="cart-dot text-white fs-sm px-1">{{ cartLength }}</div>
+          <div v-if="cartLength" class="cart-dot text-white fs-sm px-1">
+            {{ cartLength }}
+          </div>
         </div>
         <RouterLink to="/admin/products">後台</RouterLink>
       </div>

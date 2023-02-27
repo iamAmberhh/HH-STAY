@@ -43,8 +43,8 @@
             }"
           >
             <swiper-slide v-for="product in renderProduct" :key="product.id">
-              <div class="card shadow-sm overflow-hidden">
-                <div @click="routerPush(product.id)">
+              <RouterLink :to="`/product/${product.id}`">
+                <div class="card shadow-sm overflow-hidden">
                   <div class="position-relative">
                     <div class="product-item-hover overflow-hidden">
                       <img
@@ -73,13 +73,13 @@
                   </div>
                   <div class="card-footer text-end bg-white border-top-0">
                     <p class="card-text fs-7 text-end text-secondary">
-                      TWD<span class="fs-5 fw-bold ms-1 text-black">{{
+                      TWD<span class="fs-5 fw-bold mx-1 text-black">{{
                         product.price
-                      }}</span>
+                      }}</span>起
                     </p>
                   </div>
                 </div>
-              </div>
+              </RouterLink>
             </swiper-slide>
           </swiper>
         </div>
@@ -90,6 +90,7 @@
 </template>
 
 <script>
+import { RouterLink } from "vue-router";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation } from "swiper";
 // Import Swiper styles
@@ -107,11 +108,7 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
-  },
-  methods: {
-    routerPush(id) {
-      this.$router.push(`/product/${id}`);
-    },
+    RouterLink,
   },
 };
 </script>
