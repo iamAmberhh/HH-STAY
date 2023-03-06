@@ -12,10 +12,12 @@
         />
         <h2 class="mt-5 mb-3 title-bg">訂單完成</h2>
         <p class="lh-lg mb-3">
-          HH STAY 已將您的票券QR code<br />寄送至 XXXXXXXxx<br />請查收確認<br />祝您旅途愉快
-          ^__^
+          HH STAY 已將您的票券QR code<br />寄送至 {{ userEmail
+          }}<br />請查收確認<br />祝您旅途愉快 ^__^
         </p>
-        <RouterLink to="/" class="btn btn-primary text-dark w-100 fs-5">繼續購物</RouterLink>
+        <RouterLink to="/" class="btn btn-primary text-dark w-100 fs-5"
+          >繼續購物</RouterLink
+        >
       </div>
     </div>
   </section>
@@ -23,9 +25,20 @@
 
 <script>
 import { RouterLink } from "vue-router";
+import cartStore from "../../stores/cartStore";
+import { mapState, mapActions } from "pinia";
 export default {
   components: {
     RouterLink,
+  },
+  computed: {
+    ...mapState(cartStore, ["userEmail"]),
+  },
+  methods: {
+    ...mapActions(cartStore, ["getCartList"]),
+  },
+  mounted() {
+    this.getCartList();
   },
 };
 </script>

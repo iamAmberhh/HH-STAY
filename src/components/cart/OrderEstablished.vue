@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     ...mapActions(cartStore, ["changeStatus"]),
-    pay(orderId) { 
+    pay(orderId) {
       this.$http
         .post(`${VITE_APP_API}v2/api/${VITE_APP_PATH}/pay/${orderId}`)
         .then((res) => {

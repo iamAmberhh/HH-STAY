@@ -4,10 +4,12 @@ const { VITE_APP_API, VITE_APP_PATH } = import.meta.env;
 
 export default defineStore("productStore", {
   state: () => ({
+    filterProducts: [],
     enableProducts: [],
     popularProducts: [],
     instagramProducts: [],
     newestProducts: [],
+    cityProducts: [],
     allProduct: [],
     pages: {},
     isLoading: false,
@@ -16,10 +18,16 @@ export default defineStore("productStore", {
   }),
   actions: {
     getEnableProduct() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      this.isLoading = true;
       axios
         .get(`${VITE_APP_API}v2/api/${VITE_APP_PATH}/products/all`)
         .then((res) => {
           this.enableProducts = res.data.products;
+          this.isLoading = false;
         })
         .catch((err) => {
           alert(err.response.data.message);
@@ -41,12 +49,17 @@ export default defineStore("productStore", {
         });
     },
     getProduct(id) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      this.isLoading = true;
       axios
         .get(`${VITE_APP_API}v2/api/${VITE_APP_PATH}/product/${id}`)
         .then((res) => {
           this.product = res.data.product;
           this.filterOpenDate();
-          // this.isLoading = false;
+          this.isLoading = false;
         })
         .catch((err) => {
           alert(err.response.data.message);
@@ -84,6 +97,16 @@ export default defineStore("productStore", {
     getNewestProduct() {
       this.newestProducts = this.enableProducts.filter((product) => {
         return product.itemFilter === "最新";
+      });
+    },
+    getCityProduct(city) {
+      this.cityProducts = this.enableProducts.filter((product) => {
+        return product.area === city;
+      });
+    },
+    filterProduct(category) {
+      this.filterProducts = this.enableProducts.filter((product) => {
+        return product.category === category;
       });
     },
   },

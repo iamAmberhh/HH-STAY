@@ -1,8 +1,8 @@
 .cart-hover-block {
     width: 330px;
     position: fixed;
-    right:4%;
-    top:10%;
+    right:2%;
+    top:11%;
     z-index: 1050;
     &::before {
         content: "";
@@ -11,12 +11,17 @@
         height: 0;
         border: 15px solid;
         border-color: transparent transparent $primary transparent;
-        right: 10%;
-        top: -30px;
+        right: 7%;
+        top: -25px;
         z-index: 1051;
     }
     @include media-breakpoint-up(md) {
         width: 500px;
+        top:10%;
+        &::before{
+            top: -30px;
+            right: 8%;
+        }
     }
 }
 

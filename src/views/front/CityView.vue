@@ -1,14 +1,13 @@
 <template>
-  <div>城市探索頁</div>
-  <div>城市探索頁</div>
-  <div>城市探索頁</div>
-
-  <div>城市探索頁</div>
-  <div>城市探索頁</div>
-  <div>城市探索頁</div>
-
-  <div>城市探索頁</div>
-  <div>城市探索頁</div>
+  <CityComponent></CityComponent>
 </template>
 
-<script></script>
+<script>
+import CityComponent from "../../components/CityComponent.vue";
+
+export default {
+  components: {
+    CityComponent,
+  },
+};
+</script>

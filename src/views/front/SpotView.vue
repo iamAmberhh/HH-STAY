@@ -1,14 +1,22 @@
 <template>
-  <div>景點探索頁</div>
-  <div>景點探索頁</div>
-  <div>景點探索頁</div>
-
-  <div>景點探索頁</div>
-  <div>景點探索頁</div>
-  <div>景點探索頁</div>
-
-  <div>景點探索頁</div>
-  <div>景點探索頁</div>
+  <ExploreComponent :explore="explore"></ExploreComponent>
 </template>
 
-<script></script>
+<script>
+import ExploreComponent from "../../components/ExploreComponent.vue";
+
+export default {
+  data() {
+    return {
+      explore: {
+        title: "景點",
+        engTitle: "spot",
+      },
+    };
+  },
+  components: {
+    ExploreComponent,
+  },
+ 
+};
+</script>

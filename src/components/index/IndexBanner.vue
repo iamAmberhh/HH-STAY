@@ -3,23 +3,13 @@
     class="banner-section d-flex flex-column align-items-center position-relative mb-max"
   >
     <div class="row my-auto">
-      <div class="col">
-        <h2 class="text-center mb-3 mb-md-5">
-          走向台灣的每個角落<br />探索未知的城市
-        </h2>
-        <form>
-          <div class="d-flex rounded-pill bg-white px-2 py-0 py-sm-1">
-            <input
-              class="form-control pe-5 border-0"
-              type="text"
-              placeholder="輸入目的地、景點、活動名稱... "
-              aria-label="Search"
-            />
-            <button type="button" class="border-0 bg-white">
-              <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
-            </button>
-          </div>
-        </form>
+      <div class="col text-center">
+        <h2 class="mb-3 mb-md-5">走向台灣的每個角落<br />探索未知的城市</h2>
+
+        <div class="gsap-content fs-3">
+          <span class="banner-text"></span>
+          <span class="cursor">_</span>
+        </div>
       </div>
     </div>
     <div class="bg-light shadow rounded-3 icon-bar px-1 px-md-4 py-2">
@@ -88,3 +78,41 @@
     </div>
   </header>
 </template>
+
+<script>
+import gsap from "gsap";
+export default {
+  mounted() {
+    gsap.to(".banner-text", {
+      text: "馬上開始選擇你的旅程吧！",
+      ease: "none",
+      duration: 2,
+      delay: 2,
+      scrollTrigger: {
+        trigger: ".banner-text",
+        toggleActions: "play pause resume reset",
+      },
+    });
+    gsap.fromTo(
+      ".cursor",
+      0,
+      {
+        visibility: "hidden",
+      },
+      {
+        visibility: "visible",
+        repeat: -1,
+        yoyo: true,
+        repeatDelay: 0.3,
+      }
+    );
+  },
+};
+</script>
+
+<style>
+.gsap-content {
+  text-shadow: -2px -2px 0 #f8f9fa, 2px -2px 0 #f8f9fa, -2px 2px 0 #f8f9fa,
+    2px 2px 0 #f8f9fa;
+}
+</style>

@@ -20,6 +20,9 @@ a {
     text-decoration: none;
 }
 
+* ::selection {
+    background: $primary;
+}
 
 .object-fit-cover {
     width: 100%;
@@ -58,6 +61,10 @@ a {
     writing-mode: vertical-rl
 }
 
-.flatpickr-calendar{
+.flatpickr-calendar {
     background: $light ;
+}
+
+.text-shadow {
+    text-shadow: 0.1em 0.1em 0.2em black
 }

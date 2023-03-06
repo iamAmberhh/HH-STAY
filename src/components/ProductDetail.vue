@@ -1,4 +1,10 @@
 <template>
+  <VeeLoading
+    v-model:active="isLoading"
+    :color="color"
+    :is-full-page="fullPage"
+  />
+  <AlertWindow></AlertWindow>
   <!-- 圖片輪播 -->
   <section class="container mt-max">
     <swiper
@@ -21,7 +27,7 @@
         <div>
           <img
             :src="product.imageUrl"
-            :alt="img"
+            alt="img"
             class="rounded-2 object-fit-cover shadow-sm"
           />
         </div>
@@ -30,14 +36,13 @@
         <div>
           <img
             :src="img"
-            :alt="img"
+            alt="img"
             class="rounded-2 object-fit-cover shadow-sm"
           />
         </div>
       </swiper-slide>
     </swiper>
   </section>
-
   <!-- 產品訊息 -->
   <section class="container my-5 my-lg-max">
     <div class="row">
@@ -196,7 +201,9 @@
           >
             <ul class="list-style-disc ps-3 mb-3">
               <li>使用地點：{{ product.address }}</li>
-              <li>請務必於票券使用當日，出示QR code進行兌換，逾期失效</li>
+              <li>
+                請務必於票券使用當日，出示QR code進行兌換，逾期失效(住宿券除外)
+              </li>
             </ul>
             <iframe
               v-if="product.mapUrl"
@@ -217,23 +224,33 @@
       </div>
       <div class="d-none d-lg-block col-lg-4 offset-lg-1 text-dark fs-5">
         <p class="card-text text-center mb-3 bg-light rounded-2">
-          TWD<span class="fs-2 fw-blod m-1 text-black text-shadow">{{
-            product.price
-          }}</span
+          TWD<span class="fs-2 fw-blod m-1 text-black">{{ product.price }}</span
           >起
         </p>
         <form action="">
           <div class="mb-3">
             <label for="date" class="form-label">使用日期：</label>
-            <flatPickr
-              v-if="product.category !== '住宿'"
-              class="border-primary form-control flatpickr flatpickr-input fs-5 text-center"
-              placeholder="請選擇使用日期"
-              id="date"
-              v-model="date"
-              :config="flatpickrConfig"
-            ></flatPickr>
-            <p v-else class="form-control fs-5 text-center">請自行電話預定</p>
+            <div v-show="product.category !== '住宿'">
+              <flatPickr
+                class="border-primary form-control flatpickr flatpickr-input fs-5 text-center"
+                placeholder="請選擇使用日期"
+                id="date"
+                v-model="date"
+                :config="flatpickrConfig"
+              ></flatPickr>
+            </div>
+            <p
+              class="form-control fs-5 text-center"
+              v-if="product.category === '住宿'"
+            >
+              2023-12-31
+            </p>
+            <p
+              v-if="product.category === '住宿'"
+              class="fs-6 text-danger text-center my-2"
+            >
+              * 住宿券使用期限至年底<br />請自行電話預定
+            </p>
           </div>
           <p class="mb-3">選擇人數：</p>
           <ul class="mb-5">
@@ -351,7 +368,7 @@
           </div>
           <div class="modal-body">
             <p class="card-text text-center mb-3 bg-light rounded-2">
-              TWD<span class="fs-2 fw-blod m-1 text-black text-shadow">{{
+              TWD<span class="fs-2 fw-blod m-1 text-black">{{
                 product.price
               }}</span
               >起
@@ -359,16 +376,27 @@
             <form action="">
               <div class="mb-3">
                 <label for="date" class="form-label">使用日期：</label>
-                <flatPickr
-                  v-if="product.category !== '住宿'"
-                  class="border-primary form-control flatpickr flatpickr-input fs-5 text-center"
-                  placeholder="請選擇使用日期"
-                  id="date"
-                  v-model="date"
-                  :config="flatpickrConfig"
-                ></flatPickr>
-                <p v-else class="form-control fs-5 text-center">
-                  請自行電話預定
+                <div v-show="product.category !== '住宿'">
+                  <flatPickr
+                    class="border-primary form-control flatpickr flatpickr-input fs-5 text-center"
+                    placeholder="請選擇使用日期"
+                    id="date"
+                    v-model="date"
+                    :config="flatpickrConfig"
+                    ref="date"
+                  ></flatPickr>
+                </div>
+                <p
+                  class="form-control fs-5 text-center"
+                  v-if="product.category === '住宿'"
+                >
+                  2023-12-31
+                </p>
+                <p
+                  v-if="product.category === '住宿'"
+                  class="fs-6 text-danger text-center my-2"
+                >
+                  * 住宿券使用期限至年底<br />請自行電話預定
                 </p>
               </div>
               <p class="mb-3">選擇人數：</p>
@@ -484,9 +512,12 @@ import { Pagination } from "swiper";
 import "swiper/scss";
 import "swiper/scss/navigation";
 import "swiper/scss/pagination";
+
 export default {
   data() {
     return {
+      color: "#ffdf65",
+      fullPage: false,
       modules: [Pagination],
       pagination: {
         clickable: true,
@@ -503,27 +534,16 @@ export default {
         minDate: "today",
         maxDate: new Date().fp_incr(90),
         dateFormat: "Y-m-d",
+        defaultDate: "",
       },
       ticketA_qty: 1,
       ticketB_qty: 0,
       cartItemTotal: 0,
     };
   },
-  watch: {
-    product() {
-      if (this.product.category === "住宿") {
-        this.date = "自行電話預定";
-      }
-      this.switchDescription(this.product.description);
-      this.switchContent(this.product.content);
-    },
-    openDate() {
-      this.daysOfWeek = this.openDate;
-      this.flatpickrConfig.enable = this.enableFunction();
-    },
-  },
+
   computed: {
-    ...mapState(productStore, ["product", "openDate"]),
+    ...mapState(productStore, ["product", "openDate", "isLoading"]),
   },
   methods: {
     ...mapActions(productStore, ["getProduct", "filterOpenDate"]),
@@ -579,6 +599,25 @@ export default {
     switchContent(userInputHtml) {
       const safeHtml = xss(userInputHtml);
       this.content = safeHtml;
+    },
+    setDefaultDate(category) {
+      if (category === "住宿") {
+        this.date = "2023-12-31";
+      } else {
+        this.date = null;
+      }
+      console.log(this.date)
+    },
+  },
+  watch: {
+    product() {
+      this.switchDescription(this.product.description);
+      this.switchContent(this.product.content);
+      this.setDefaultDate(this.product.category);
+    },
+    openDate() {
+      this.daysOfWeek = this.openDate;
+      this.flatpickrConfig.enable = this.enableFunction();
     },
   },
   components: {

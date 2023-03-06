@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="navbar navbar-expand-lg navbar-light border-bottom border-2 border-primary shadow-sm fixed-top bg-white py-0"
+    class="navbar navbar-expand-lg navbar-light border-bottom border-2 border-primary fixed-top bg-light py-0"
   >
     <div class="container-fluid">
       <h1>
@@ -12,33 +12,33 @@
           />
         </RouterLink>
       </h1>
-      <div class="d-flex">
-        <div
-          class="position-relative"
-          v-if="
-            this.$route.path !== '/cart' &&
-            this.$route.path !== '/cart/info' &&
-            this.$route.path !== '/cart/finish'
-          "
-        >
-          <img
-            src="/image/cart.png"
-            alt="cart"
-            width="35"
-            class="me-2 me-md-5 cart-btn"
-            @mouseenter="showCartBlock()"
-          />
-          <div v-if="cartLength" class="cart-dot text-white fs-sm px-1">
-            {{ cartLength }}
-          </div>
+
+      <div
+        class="position-relative"
+        v-if="
+          this.$route.path !== '/cart' &&
+          this.$route.path !== '/cart/info' &&
+          this.$route.path !== '/cart/finish'
+        "
+      >
+        <img
+          src="/image/cart.png"
+          alt="cart"
+          width="32"
+          class="me-2 me-md-5"
+          @mouseenter="showCartBlock()"
+          @touchstart="showCartBlock()"
+        />
+        <div v-if="cartLength" class="cart-dot text-white fs-sm px-1">
+          {{ cartLength }}
         </div>
-        <RouterLink to="/admin/products">後台</RouterLink>
       </div>
     </div>
   </nav>
   <!-- 購物車清單 -->
   <div
     @mouseleave="closeCartBlock()"
+    @touchend="closeCartBlock()"
     ref="cartHover"
     class="d-none cart-hover-block bg-light shadow-lg rounded-2"
   >

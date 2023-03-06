@@ -26,8 +26,13 @@ configure({
 });
 setLocale("zh_TW");
 // ckeditor
-import CKEditor from '@ckeditor/ckeditor5-vue'
-// import "./assets/main.css";
+import CKEditor from "@ckeditor/ckeditor5-vue";
+import AlertWindow from "./components/AlertWindow.vue";
+// GSAP
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { TextPlugin } from "gsap/TextPlugin";
+gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
 const app = createApp(App);
 
@@ -47,7 +52,7 @@ app.component("VForm", Form);
 app.component("VField", Field);
 app.component("ErrorMessage", ErrorMessage);
 // ckeditor
-app.use(CKEditor)
-
+app.use(CKEditor);
+app.component("AlertWindow", AlertWindow);
 
 app.mount("#app");

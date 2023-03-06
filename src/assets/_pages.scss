@@ -1,0 +1,90 @@
+.page-banner-text-shadow{
+    text-shadow: -1px -1px 7px $dark,
+              1px -1px 7px $dark,
+              -1px 1px 7px $dark,
+              1px 1px 7px $dark;
+  }
+
+.page-banner-section {
+    margin-top: 60px;
+    height: 50vh;
+    
+    @include media-breakpoint-up(md) {
+        height: calc(80vh - 75px);
+    }
+    background: url();
+    &-city{
+        background: url(../image/banner-city.jpg) no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    &-event{
+        background: url(../image/banner-event.jpg) no-repeat;
+        background-size: cover;
+        background-position: center bottom;
+    }
+    &-food{
+        background: url(../image/banner-food.jpg) no-repeat;
+        background-size: cover;
+        background-position: center bottom;
+    }
+    &-hotel{
+        background: url(../image/banner-hotel.jpg) no-repeat;
+        background-size: cover;
+        background-position: center bottom;
+    }
+    &-traffic{
+        background: url(../image/banner-traffic.jpg) no-repeat;
+        background-size: cover;
+        background-position: center bottom;
+    }
+    &-spot{
+        background: url(../image/banner-spot.jpg) no-repeat;
+        background-size: cover;
+        background-position: center top;
+    }
+    &-taipei{
+        background: url(../image/popular_city_taipei.jpg) no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+    &-penghu{
+        background: url(../image/popular_city_penghu.jpg) no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+    &-liuqiu{
+        background: url(../image/popular_city_liuqiu.jfif) no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+}
+.page-banner-title{
+    .col{
+        z-index: 5;
+    }
+    &::after{
+        position: absolute;
+        content:"";
+        background: $white;
+        opacity: 0.5;
+        top: 25%;
+        left: 0;
+        right: 0;
+        z-index:0;
+        height: 180px;
+        width: 100%;
+    }
+    @include media-breakpoint-up(md) {
+        &::after{
+            height: 50%;
+        }
+    }
+}
+.sidebar-sticky{
+    position: sticky;
+    top: 120px;
+    z-index: 5;
+    width: 100%;
+    // max-height: 500px;
+}

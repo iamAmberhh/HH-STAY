@@ -1,6 +1,12 @@
 <template>
   <aside class="bg-light px-0 admin-aside-bar d-flex flex-column">
-    <h1 class="h1-logo mx-auto my-2">HH STAY</h1>
+    <h1 class="h1-logo mx-auto my-2">
+      <img
+        src="/image/HHSTAY-logo.png"
+        alt="logo"
+        style="width: 200px; height: auto"
+      />
+    </h1>
     <ul class="nav">
       <li class="nav-item w-100">
         <RouterLink to="/" class="nav-link p-2 d-flex align-items-center"

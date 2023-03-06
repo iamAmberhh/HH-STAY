@@ -40,9 +40,14 @@
         right:0;
         top:-38px;
     }
-    &-active{
+    &-fillInfo{
         &::after{
-            background: linear-gradient(to right, $primary 50%, $secondary 50%);
+            background: linear-gradient(to right, $primary 33.33%, $secondary 33.33%);
+        }
+    }
+    &-pay{
+        &::after{
+            background: linear-gradient(to right, $primary 67%, $secondary 67%);
         }
     }
     &-finish{

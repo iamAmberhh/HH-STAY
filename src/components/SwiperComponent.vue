@@ -5,6 +5,7 @@
       class="d-none d-md-flex justify-content-between fs-2 text-dark sales-product-btn"
     >
       <li
+        style="cursor: pointer"
         :class="{
           instagramPrevBtn: product.category === 'instagram',
           newestPrevBtn: product.category === 'newest',
@@ -16,6 +17,7 @@
         />
       </li>
       <li
+        style="cursor: pointer"
         :class="{
           instagramNextBtn: product.category === 'instagram',
           newestNextBtn: product.category === 'newest',

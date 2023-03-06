@@ -32,7 +32,7 @@ const router = createRouter({
           component: () => import("../views/front/SpotView.vue"),
         },
         {
-          path: "city",
+          path: "city/:name",
           component: () => import("../views/front/CityView.vue"),
         },
         {

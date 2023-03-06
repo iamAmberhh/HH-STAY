@@ -1,4 +1,10 @@
 <template>
+  <VeeLoading
+    v-model:active="isLoading"
+    :color="color"
+    :is-full-page="fullPage"
+  />
+  <AlertWindow></AlertWindow>
   <section class="container mb-max">
     <div class="text-center" v-if="!cartStatus">
       <p class="mb-3">購物車內還沒有商品，快去選購吧！</p>
@@ -24,14 +30,11 @@
             </button>
           </div>
           <div class="card-body">
-            <flatPickr
+            <p
               class="form-control flatpickr flatpickr-input fs-5 text-center mb-2"
-              placeholder="請選擇使用日期"
-              id="date"
-              v-model="item.date"
-              :config="flatpickrConfig"
-              @change="updateItemDate(item.id, item.product_id, item.date)"
-            ></flatPickr>
+            >
+              使用日期：{{ item.date }}
+            </p>
             <ul>
               <li class="mb-3 d-flex align-items-center">
                 <label for="adult-ticket" class="form-label w-100 mb-0 me-4"
@@ -182,18 +185,8 @@ import { mapState, mapActions } from "pinia";
 export default {
   data() {
     return {
-      flatpickrConfig: {
-        wrap: true, // set wrap to true only when using 'input-group'
-        altInput: true,
-        minDate: "today",
-        // defaultDate: "today",
-        dateFormat: "Y-m-d",
-        disable: [
-          function (date) {
-            return date.getDay() === 4;
-          },
-        ],
-      },
+      color: "#ffdf65",
+      fullPage: false,
     };
   },
   computed: {
@@ -203,6 +196,7 @@ export default {
       "cartStatus",
       "cartTotal",
       "orderStatus",
+      "isLoading"
     ]),
   },
   methods: {
@@ -211,7 +205,6 @@ export default {
       "removeCartItem",
       "removeAllCart",
       "updateItemQty",
-      "updateItemDate",
       "changeStatus",
     ]),
   },

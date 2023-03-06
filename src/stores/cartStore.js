@@ -10,11 +10,18 @@ export default defineStore("cartStore", {
     cartTotal: null,
     cartItemTotal: null,
     orderStatus: "cartlist",
-    // pages: {},
-    // isLoading: false,
+    userEmail: "",
+    isLoading: false,
+    alertShow: false,
+    alert: {
+      title: "",
+      needCheck: null,
+      status: "",
+    },
   }),
   actions: {
     getCartList() {
+      this.isLoading = true;
       axios
         .get(`${VITE_APP_API}v2/api/${VITE_APP_PATH}/cart`)
         .then((res) => {
@@ -26,31 +33,32 @@ export default defineStore("cartStore", {
             this.cartStatus = true;
           }
           this.countCartTotal();
+          this.isLoading = false;
         })
         .catch((err) => {
           alert(err.response.data.message);
         });
     },
     removeCartItem(id) {
+      this.isLoading = true;
       axios
         .delete(`${VITE_APP_API}v2/api/${VITE_APP_PATH}/cart/${id}`)
         .then(() => {
-          alert(`已刪除購物車品項`);
+          this.alertShow = true;
+          this.alert = {
+            title: "已刪除購物車品項",
+            needCheck: false,
+            status: "success",
+          };
           this.getCartList();
         })
-        .catch((err) => {
-          alert(err.data.message);
-        });
-    },
-    removeAllCart() {
-      axios
-        .delete(`${VITE_APP_API}v2/api/${VITE_APP_PATH}/carts`)
-        .then(() => {
-          alert(`已清空購物車`);
-          this.getCartList();
-        })
-        .catch((err) => {
-          alert(err.data.message);
+        .catch(() => {
+          this.alertShow = true;
+          this.alert = {
+            title: "API不存在，請確認",
+            needCheck: true,
+            status: "fail",
+          };
         });
     },
     addToCart(
@@ -61,8 +69,14 @@ export default defineStore("cartStore", {
       ticketA_price = 0,
       ticketB_price = 0
     ) {
+      this.isLoading = true;
       if (date === null) {
-        alert("請選擇日期");
+        this.alertShow = true;
+        this.alert = {
+          title: "請選擇日期",
+          needCheck: true,
+          status: "info",
+        };
         return;
       }
       const data = {
@@ -74,14 +88,17 @@ export default defineStore("cartStore", {
         cartItemTotal:
           ticketA_qty * ticketA_price + ticketB_qty * ticketB_price,
       };
+
       axios
         .post(`${VITE_APP_API}v2/api/${VITE_APP_PATH}/cart`, { data })
         .then((res) => {
-          alert(res.data.message);
+          this.alertShow = true;
+          this.alert = {
+            title: res.data.message,
+            needCheck: false,
+            status: "success",
+          };
           this.getCartList();
-          // this.productId = "";
-          // this.$refs.productModal.hideModal();
-          // this.clearLoadingStatus();
         })
         .catch((err) => {
           alert(err.response.data.message);
@@ -101,7 +118,7 @@ export default defineStore("cartStore", {
       ticketB_price = 0
     ) {
       if (ticketA_qty <= 0 && ticketB_qty <= 0) {
-        alert("是否要刪除該品項");
+        this.removeCartItem(id);
         return;
       }
       if (ticketA_qty <= -1) {
@@ -118,34 +135,34 @@ export default defineStore("cartStore", {
         cartItemTotal:
           ticketA_qty * ticketA_price + ticketB_qty * ticketB_price,
       };
+      this.isLoading = true;
       axios
         .put(`${VITE_APP_API}v2/api/${VITE_APP_PATH}/cart/${id}`, { data })
         .then(() => {
-          alert("已更新產品數量");
           this.getCartList();
+          this.alertShow = true;
+          this.alert = {
+            title: "已更新產品數量",
+            needCheck: false,
+            status: "success",
+          };
         })
         .catch((err) => {
           alert(err.response.data.message);
         });
     },
-    updateItemDate(id, product_id, date) {
-      const data = {
-        product_id,
-        qty: 0,
-        date,
-      };
-      axios
-        .put(`${VITE_APP_API}v2/api/${VITE_APP_PATH}/cart/${id}`, { data })
-        .then(() => {
-          alert("已更新產品日期");
-          this.getCartList();
-        })
-        .catch((err) => {
-          alert(err.response.data.message);
-        });
+    changeStatus(status) {
+      this.orderStatus = `${status}`;
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     },
-    changeStatus(status){
-      this.orderStatus = `${status}`
-    }
+    getUserEmail(email) {
+      this.userEmail = email;
+    },
+    closeAlert() {
+      this.alertShow = false;
+    },
   },
 });

@@ -1,14 +1,22 @@
 <template>
-  <div>住宿探索頁</div>
-  <div>住宿探索頁</div>
-  <div>住宿探索頁</div>
-
-  <div>住宿探索頁</div>
-  <div>住宿探索頁</div>
-  <div>住宿探索頁</div>
-
-  <div>住宿探索頁</div>
-  <div>住宿探索頁</div>
+  <ExploreComponent :explore="explore"></ExploreComponent>
 </template>
 
-<script></script>
+<script>
+import ExploreComponent from "../../components/ExploreComponent.vue";
+
+export default {
+  data() {
+    return {
+      explore: {
+        title: "住宿",
+        engTitle: "hotel",
+      },
+    };
+  },
+  components: {
+    ExploreComponent,
+  },
+ 
+};
+</script>
