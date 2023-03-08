@@ -87,10 +87,6 @@
     &-fourth::before{
         content:"4";
     }
-    &-finish::before{
-        content:"✓";
-        background: $primary;
-    }
     &-active{
         &::before{
             background: $primary;
@@ -111,9 +107,6 @@
         top: -25%;
         left: 35%;
     }
-    // @include media-breakpoint-up(lg){
-    //     left: 39%;
-    // }
 }
 
 .title-bg{

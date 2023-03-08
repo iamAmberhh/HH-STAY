@@ -112,7 +112,7 @@ export default {
 
 <style>
 .gsap-content {
-  text-shadow: -2px -2px 0 #f8f9fa, 2px -2px 0 #f8f9fa, -2px 2px 0 #f8f9fa,
-    2px 2px 0 #f8f9fa;
+  text-shadow: -1px -1px 0 #f8f9fa, 1px -1px 0 #f8f9fa, -1px 1px 0 #f8f9fa,
+    1px 1px 0 #f8f9fa;
 }
 </style>

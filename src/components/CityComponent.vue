@@ -39,50 +39,79 @@
     </div>
   </header>
   <section class="container">
-    <div
-      v-if="renderProduct.length === 0"
-      style="height: 200px"
-      class="d-flex flex-column justify-content-center align-items-center mb-5"
-    >
-      <p class="raleway display-1 fw-bold text-primary">Oh ...</p>
-      <p v-if="keyword">
-        目前沒有『<span class="text-danger fw-bold mx-1">{{ keyword }}</span
-        >』的相關商品<br />請查詢其他關鍵字
-      </p>
-    </div>
-    <ul class="mb-5" v-else>
-      <li
-        class="card overflow-hidden mb-2"
-        v-for="product in renderProduct"
-        :key="product.id"
-      >
-        <RouterLink :to="`/product/${product.id}`">
-          <div class="row g-0 align-items-center">
-            <div class="col-4">
-              <img
-                :src="product.imageUrl"
-                class="img-fluid product-item-hover overflow-hidden object-fit-cover card-img-height"
-                alt="pic"
-              />
-            </div>
-            <div class="col-8">
-              <div class="card-body px-2 py-1 px-lg-3 py-lg-2">
-                <h5 class="card-title fw-blod ellipsis2 mb-2">
-                  {{ product.title }}
-                </h5>
-                <p class="ellipsis2 mb-2" v-html="product.description"></p>
-                <p class="card-text fs-7 text-end text-secondary">
-                  TWD<span class="fs-5 fw-blod mx-1 text-black">{{
-                    product.price
-                  }}</span
-                  >起
-                </p>
-              </div>
-            </div>
+    <div class="row">
+      <div class="col-md-3">
+        <form
+          action=""
+          class="border border-primary border-1 p-3 rounded-1 sidebar-sticky"
+        >
+          <!-- 篩選分類 -->
+          <p class="mb-1">篩選分類</p>
+          <div class="form-check ps-0">
+            <select
+              class="form-select border-primary"
+              @change="selectCategory"
+              v-model="category"
+            >
+              <option selected disabled>請選擇類別</option>
+              <option
+                v-for="category in categories"
+                :key="category"
+                :value="category"
+              >
+                {{ category }}
+              </option>
+            </select>
           </div>
-        </RouterLink>
-      </li>
-    </ul>
+        </form>
+      </div>
+      <div class="col-md-9">
+        <div
+          v-if="renderProduct.length === 0"
+          style="height: 200px"
+          class="d-flex flex-column justify-content-center align-items-center mb-5"
+        >
+          <p class="raleway display-1 fw-bold text-primary">Oh ...</p>
+          <p v-if="keyword">
+            目前沒有『<span class="text-danger fw-bold mx-1">{{ keyword }}</span
+            >』的相關商品<br />請查詢其他關鍵字
+          </p>
+        </div>
+        <ul class="mb-5" v-else>
+          <li
+            class="card overflow-hidden mb-2"
+            v-for="product in renderProduct"
+            :key="product.id"
+          >
+            <RouterLink :to="`/product/${product.id}`">
+              <div class="row g-0 align-items-center">
+                <div class="col-4">
+                  <img
+                    :src="product.imageUrl"
+                    class="img-fluid product-item-hover overflow-hidden object-fit-cover card-img-height"
+                    alt="pic"
+                  />
+                </div>
+                <div class="col-8">
+                  <div class="card-body px-2 py-1 px-lg-3 py-lg-2">
+                    <h5 class="card-title fw-blod ellipsis2 mb-2">
+                      {{ product.title }}
+                    </h5>
+                    <p class="ellipsis2 mb-2" v-html="product.description"></p>
+                    <p class="card-text fs-7 text-end text-secondary">
+                      TWD<span class="fs-5 fw-blod mx-1 text-black">{{
+                        product.price
+                      }}</span
+                      >起
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </RouterLink>
+          </li>
+        </ul>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -101,6 +130,8 @@ export default {
       },
       renderProduct: [],
       keyword: "",
+      categories: ["活動", "美食", "住宿", "交通", "景點"],
+      category:""
     };
   },
   computed: {
@@ -127,6 +158,11 @@ export default {
       if (this.keyword === "") {
         this.renderProduct = this.cityProducts;
       }
+    },
+    selectCategory() {
+      this.renderProduct = this.cityProducts.filter((i) => {
+        return i.category.match(this.category);
+      });
     },
   },
   watch: {

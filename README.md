@@ -1,42 +1,44 @@
 
 # <font face="monospace">HH STAY 票券電商</font>
-使用 Vite 串接 API 完成的 SPA 旅遊套票電商網站
-放圖片
-![](照片網址)
+使用 Vite 串接 API 完成的單頁式應用旅遊套票電商網站，包含 RWD 響應式體驗
+提供產品瀏覽、分類篩選、價格排序、加入購物車及結帳付款等功能
+
+![](https://i.imgur.com/veygUJd.jpg)
+![](https://i.imgur.com/Ngusacg.png)
 
 ## Demo
 * [前台](https://iamamberhh.github.io/HH-STAY/#/)
 * [後台](https://iamamberhh.github.io/HH-STAY/#/login)
 
 ## 學習技能
-* Vite環境建置
+* Vite 環境建置
 * 元件拆分、重複使用
-* pinia store建置
-
+* Pinia Store 建置
 
 ## 實作內容
 * 前台
-    - [x] 取得產品列表/渲染頁面
+    - [x] 串接取得產品 API
     - [x] 產品篩選功能
+    - [x] 選擇日期、瀏覽地圖
     - [x] 加入購物車功能
-    - [x] 取得購物車資訊/渲染頁面
     - [x] 購物車產品修改刪除
     - [x] 送出訂單/表單驗證
 * 後台
-    - [x] 產品頁面 新增/修改/刪除
-    - [x] 訂單頁面 取得/刪除
+    - [x] 產品 新增/修改/刪除
+    - [x] 訂單 取得/瀏覽/刪除
+    - [x] 分頁功能
 
 
 
 ## 使用套件
-* bootstraps 5
-* swiper
+* Bootstraps 5
+* Swiper
 * vue-axios
-* ckeditor5
-* fortawesome
-* vee-validate
-* swiper
-* flatpickr
+* CKEditor 5
+* Fort Awesome
+* VeeValidate
+* Flatpickr
+* GSAP
 
 
 

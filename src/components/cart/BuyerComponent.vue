@@ -1,4 +1,5 @@
 <template>
+  <AlertWindow></AlertWindow>
   <div class="col-lg-5">
     <VForm
       ref="form"
@@ -95,7 +96,7 @@
           >
         </li>
         <li class="w-50">
-          <button type="submit" class="btn btn-outline-primary text-dark w-100">
+          <button type="submit" class="btn btn-primary text-dark w-100">
             送出訂單
           </button>
         </li>
@@ -136,7 +137,12 @@ export default {
     ...mapState(cartStore, ["orderStatus"]),
   },
   methods: {
-    ...mapActions(cartStore, ["getCartList", "changeStatus", "getUserEmail"]),
+    ...mapActions(cartStore, [
+      "getCartList",
+      "changeStatus",
+      "getUserEmail",
+      "showAlert",
+    ]),
     isPhone(value) {
       const phoneNumber = /^(09)[0-9]{8}$/;
       return phoneNumber.test(value) ? true : "需要正確的手機號碼";
@@ -146,12 +152,12 @@ export default {
         user: this.user,
         message: this.message,
       };
-
+      
       this.$http
         .post(`${VITE_APP_API}v2/api/${VITE_APP_PATH}/order`, { data })
         .then((res) => {
           this.orderId = res.data.orderId;
-          alert(res.data.message);
+          this.showAlert(res.data.message, false, "success");
           this.getUserEmail(this.user.email);
           this.changeStatus("pay");
         })

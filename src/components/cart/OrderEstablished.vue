@@ -1,4 +1,6 @@
 <template>
+  <AlertWindow></AlertWindow>
+
   <form>
     <div class="mb-3">
       <p>訂購資訊</p>
@@ -22,7 +24,7 @@
       <li class="w-50">
         <button
           type="button"
-          class="btn btn-outline-primary text-dark w-100"
+          class="btn btn-primary text-dark w-100"
           @click="pay(orderId)"
         >
           確認付款
@@ -42,12 +44,11 @@ export default {
     ...mapState(cartStore, ["orderStatus"]),
   },
   methods: {
-    ...mapActions(cartStore, ["changeStatus"]),
+    ...mapActions(cartStore, ["changeStatus", "showAlert"]),
     pay(orderId) {
       this.$http
         .post(`${VITE_APP_API}v2/api/${VITE_APP_PATH}/pay/${orderId}`)
-        .then((res) => {
-          alert(res.data.message);
+        .then(() => {
           this.changeStatus("finish");
           this.$router.push("/cart/finish");
         })

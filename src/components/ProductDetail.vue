@@ -383,7 +383,6 @@
                     id="date"
                     v-model="date"
                     :config="flatpickrConfig"
-                    ref="date"
                   ></flatPickr>
                 </div>
                 <p
@@ -525,7 +524,7 @@ export default {
         dynamicBullets: true,
       },
       description: "",
-      date: null,
+      date: "2023-12-31",
       daysOfWeek: [],
       flatpickrConfig: {
         wrap: true, // set wrap to true only when using 'input-group'
@@ -534,7 +533,6 @@ export default {
         minDate: "today",
         maxDate: new Date().fp_incr(90),
         dateFormat: "Y-m-d",
-        defaultDate: "",
       },
       ticketA_qty: 1,
       ticketB_qty: 0,
@@ -606,7 +604,6 @@ export default {
       } else {
         this.date = null;
       }
-      console.log(this.date)
     },
   },
   watch: {

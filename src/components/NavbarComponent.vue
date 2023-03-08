@@ -21,13 +21,21 @@
           this.$route.path !== '/cart/finish'
         "
       >
+        <RouterLink to="/cart" v-if="mobileScreen">
+          <img
+            src="/image/cart.png"
+            alt="cart"
+            width="32"
+            class="me-2 me-md-5"
+          />
+        </RouterLink>
         <img
+          v-else
           src="/image/cart.png"
           alt="cart"
           width="32"
           class="me-2 me-md-5"
           @mouseenter="showCartBlock()"
-          @touchstart="showCartBlock()"
         />
         <div v-if="cartLength" class="cart-dot text-white fs-sm px-1">
           {{ cartLength }}
@@ -38,7 +46,6 @@
   <!-- 購物車清單 -->
   <div
     @mouseleave="closeCartBlock()"
-    @touchend="closeCartBlock()"
     ref="cartHover"
     class="d-none cart-hover-block bg-light shadow-lg rounded-2"
   >
@@ -107,11 +114,7 @@
         <span>{{ cartLength }}件商品</span>
         <span>總共{{ cartTotal }}元</span>
       </div>
-      <RouterLink
-        @click="closeCartBlock()"
-        to="/cart"
-        class="btn btn-primary text-dark"
-      >
+      <RouterLink to="/cart" class="btn btn-primary text-dark">
         查看購物車
       </RouterLink>
     </div>
@@ -122,6 +125,11 @@
 import cartStore from "@/stores/cartStore";
 import { mapState, mapActions } from "pinia";
 export default {
+  data() {
+    return {
+      mobileScreen: window.innerWidth <= 600,
+    };
+  },
   computed: {
     ...mapState(cartStore, [
       "carts",

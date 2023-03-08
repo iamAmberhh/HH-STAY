@@ -164,5 +164,11 @@ export default defineStore("cartStore", {
     closeAlert() {
       this.alertShow = false;
     },
+    showAlert(title, needCheck, status) {
+      this.alertShow = true;
+      this.alert.title = title;
+      this.alert.needCheck = needCheck;
+      this.alert.status = status;
+    },
   },
 });
