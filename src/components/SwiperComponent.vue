@@ -70,7 +70,7 @@
                 >
               </div>
               <div class="card-body">
-                <h5 class="card-title fw-blod ellipsis2" style="height: 50px">
+                <h5 class="card-title fw-bold ellipsis2" style="height: 50px">
                   {{ product.title }}
                 </h5>
                 <p class="card-text fs-7 text-end text-secondary">

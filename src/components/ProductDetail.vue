@@ -23,15 +23,6 @@
         },
       }"
     >
-      <swiper-slide>
-        <div>
-          <img
-            :src="product.imageUrl"
-            alt="img"
-            class="rounded-2 object-fit-cover shadow-sm"
-          />
-        </div>
-      </swiper-slide>
       <swiper-slide v-for="img in product.imagesUrl" :key="img">
         <div>
           <img
@@ -46,7 +37,7 @@
   <!-- 產品訊息 -->
   <section class="container my-5 my-lg-max">
     <div class="row">
-      <div class="col-lg-7 mb-5 mb-lg-0">
+      <div class="col-lg-7 mb-5">
         <span class="bg-primary text-dark rounded-pill px-2 fs-6"
           ><font-awesome-icon icon="fa-solid fa-location-dot" class="me-1" />{{
             product.area
@@ -339,15 +330,23 @@
         </form>
       </div>
     </div>
-
-    <button
-      type="button"
-      class="w-100 d-lg-none btn btn-primary text-dark"
-      data-bs-toggle="modal"
-      data-bs-target="#purchaseModal"
-    >
-      立即選購
-    </button>
+    <div class="d-flex justify-content-between">
+      <button
+        type="button"
+        class="w-50 me-2 btn btn-outline-primary text-dark"
+        @click="pageBack"
+      >
+        返回前頁
+      </button>
+      <button
+        type="button"
+        class="w-50 d-lg-none btn btn-primary text-dark"
+        data-bs-toggle="modal"
+        data-bs-target="#purchaseModal"
+      >
+        立即選購
+      </button>
+    </div>
     <div
       class="modal fade"
       id="purchaseModal"
@@ -604,6 +603,9 @@ export default {
       } else {
         this.date = null;
       }
+    },
+    pageBack() {
+      this.$router.go(-1);
     },
   },
   watch: {

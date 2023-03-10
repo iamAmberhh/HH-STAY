@@ -36,7 +36,7 @@
           </div>
         </RouterLink>
       </li>
-      <li class="me-2 w-25">
+      <li class="w-25">
         <RouterLink to="/city/liuqiu">
           <div class="position-relative">
             <div>

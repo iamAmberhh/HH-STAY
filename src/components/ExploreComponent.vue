@@ -63,29 +63,41 @@
               <button
                 type="button"
                 class="border-0 bg-transparent ms-auto me-1"
+                @click="searchKeyword"
               >
-                <i class="fa-solid fa-magnifying-glass"></i>
+                <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
               </button>
             </div>
           </div>
           <!-- 篩選目的地 -->
-          <p class="mb-1">篩選目的地</p>
-          <div class="form-check ps-0">
-            <select
-              class="form-select border-primary"
-              @change="selectArea"
-              v-model="city"
-            >
-              <option selected disabled>請選擇類別</option>
-              <option v-for="city in cities" :key="city" :value="city">
-                {{ city }}
-              </option>
-            </select>
+          <div class="mb-3">
+            <p class="mb-1">篩選目的地</p>
+            <div class="form-check ps-0">
+              <select
+                class="form-select border-primary"
+                @change="selectArea"
+                v-model="city"
+              >
+                <option value="" selected disabled class="text-muted">
+                  請選擇地區
+                </option>
+                <option v-for="city in cities" :key="city" :value="city">
+                  {{ city }}
+                </option>
+              </select>
+            </div>
           </div>
+          <button
+            type="button"
+            class="btn btn-outline-primary text-dark w-100"
+            @click="clearSearch"
+          >
+            清除條件
+          </button>
         </form>
       </div>
       <div class="col-md-9">
-        <ul class="d-flex justify-content-end mb-3">
+        <ul class="d-flex justify-content-end align-items-center mb-3">
           <li>
             <a href="#" class="link-dark" @click.prevent="priceDecrease"
               >價格高到低↓</a
@@ -97,6 +109,7 @@
             >
           </li>
         </ul>
+
         <div
           v-if="renderProduct.length === 0"
           style="height: 200px"
@@ -129,12 +142,12 @@
                 </div>
                 <div class="col-8">
                   <div class="card-body px-2 py-1 px-lg-3 py-lg-2">
-                    <h5 class="card-title fw-blod ellipsis2 mb-2">
+                    <h5 class="card-title fw-bold ellipsis2 mb-2">
                       {{ product.title }}
                     </h5>
                     <p class="ellipsis2 mb-2" v-html="product.description"></p>
                     <p class="card-text fs-7 text-end text-secondary">
-                      TWD<span class="fs-5 fw-blod mx-1 text-black">{{
+                      TWD<span class="fs-5 fw-bold mx-1 text-black">{{
                         product.price
                       }}</span
                       >起
@@ -181,6 +194,9 @@ export default {
         "澎湖",
         "金門",
         "馬祖",
+        "綠島",
+        "蘭嶼",
+        "小琉球"
       ],
       keyword: "",
       city: "",
@@ -223,6 +239,11 @@ export default {
       this.renderProduct = this.filterProducts.filter((i) => {
         return i.area.match(this.city);
       });
+    },
+    clearSearch() {
+      this.city = "";
+      this.keyword = "";
+      this.renderProduct = this.filterProducts;
     },
   },
   watch: {

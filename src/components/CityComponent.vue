@@ -40,7 +40,7 @@
   </header>
   <section class="container">
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-3 mb-3">
         <form
           action=""
           class="border border-primary border-1 p-3 rounded-1 sidebar-sticky"
@@ -53,7 +53,9 @@
               @change="selectCategory"
               v-model="category"
             >
-              <option selected disabled>請選擇類別</option>
+              <option value="" selected disabled class="text-muted">
+                請選擇類別
+              </option>
               <option
                 v-for="category in categories"
                 :key="category"
@@ -94,12 +96,12 @@
                 </div>
                 <div class="col-8">
                   <div class="card-body px-2 py-1 px-lg-3 py-lg-2">
-                    <h5 class="card-title fw-blod ellipsis2 mb-2">
+                    <h5 class="card-title fw-bold ellipsis2 mb-2">
                       {{ product.title }}
                     </h5>
                     <p class="ellipsis2 mb-2" v-html="product.description"></p>
                     <p class="card-text fs-7 text-end text-secondary">
-                      TWD<span class="fs-5 fw-blod mx-1 text-black">{{
+                      TWD<span class="fs-5 fw-bold mx-1 text-black">{{
                         product.price
                       }}</span
                       >起
@@ -131,7 +133,7 @@ export default {
       renderProduct: [],
       keyword: "",
       categories: ["活動", "美食", "住宿", "交通", "景點"],
-      category:""
+      category: "",
     };
   },
   computed: {
