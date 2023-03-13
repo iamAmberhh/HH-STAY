@@ -18,7 +18,7 @@
           <div
             class="card-header bg-primary d-flex justify-content-between align-items-center"
           >
-            <h5 class="card-title fw-blod ellipsis2 mb-0 me-2">
+            <h5 class="card-title fw-bold ellipsis2 mb-0 me-2">
               {{ item.product.title }}
             </h5>
             <button
@@ -144,7 +144,7 @@
           </div>
           <div class="card-footer text-end bg-white border-top-0">
             <p class="fs-7 text-secondary">
-              TWD<span class="fs-5 fw-blod ms-1 text-black">{{
+              TWD<span class="fs-5 fw-bold ms-1 text-black">{{
                 item.cartItemTotal
               }}</span>
             </p>
@@ -196,7 +196,7 @@ export default {
       "cartStatus",
       "cartTotal",
       "orderStatus",
-      "isLoading"
+      "isLoading",
     ]),
   },
   methods: {

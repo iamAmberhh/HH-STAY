@@ -66,10 +66,10 @@ const router = createRouter({
           path: "product/:id",
           component: () => import("../views/front/ProductView.vue"),
         },
-        { 
-          path: "/:pathMatch(.*)*", 
-          component: () => import("../views/front/ErrorView.vue")
-         },
+        {
+          path: "/:pathMatch(.*)*",
+          component: () => import("../views/front/ErrorView.vue"),
+        },
       ],
     },
     {
@@ -94,7 +94,6 @@ const router = createRouter({
         },
       ],
     },
-  
   ],
 });
 

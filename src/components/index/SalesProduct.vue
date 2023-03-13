@@ -61,7 +61,7 @@
                 >
               </div>
               <div class="card-body">
-                <h5 class="card-title fw-blod ellipsis2">
+                <h5 class="card-title fw-bold ellipsis2">
                   {{ product.title }}
                 </h5>
                 <p class="card-text fs-7 text-end text-secondary">

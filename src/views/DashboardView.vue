@@ -11,7 +11,7 @@ import AdminDashboard from "../components/AdminDashboard.vue";
 export default {
   components: {
     RouterView,
-    AdminDashboard
+    AdminDashboard,
   },
 };
 </script>

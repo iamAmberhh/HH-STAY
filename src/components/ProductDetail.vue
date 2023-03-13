@@ -46,7 +46,7 @@
         <h2 class="mt-2 mb-4">
           {{ product.title }}
         </h2>
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <ul class="nav nav-tabs" id="myTab" role="tablist" ref="myTab">
           <li class="nav-item" role="presentation">
             <button
               class="nav-link px-1 active"
@@ -350,6 +350,7 @@
     <div
       class="modal fade"
       id="purchaseModal"
+      ref="purchaseModal"
       tabindex="-1"
       aria-labelledby="purchaseModal"
       aria-hidden="true"
@@ -536,9 +537,10 @@ export default {
       ticketA_qty: 1,
       ticketB_qty: 0,
       cartItemTotal: 0,
+      myTab: null,
+      myModal: null,
     };
   },
-
   computed: {
     ...mapState(productStore, ["product", "openDate", "isLoading"]),
   },
@@ -626,6 +628,8 @@ export default {
   mounted() {
     const id = this.$route.params.id;
     this.getProduct(id);
+    this.myTab = new Tab(this.$refs.myTab);
+    this.myModal = new Modal(this.$refs.purchaseModal);
   },
 };
 </script>

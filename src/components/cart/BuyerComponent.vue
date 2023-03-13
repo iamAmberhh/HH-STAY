@@ -152,7 +152,6 @@ export default {
         user: this.user,
         message: this.message,
       };
-      
       this.$http
         .post(`${VITE_APP_API}v2/api/${VITE_APP_PATH}/order`, { data })
         .then((res) => {

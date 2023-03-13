@@ -11,7 +11,7 @@
           </div>
           <div class="col-10">
             <div class="card-body">
-              <h5 class="card-title fw-blod ellipsis2">
+              <h5 class="card-title fw-bold ellipsis2">
                 {{ item.product.title }}
               </h5>
               <p class="mb-2">使用日期：{{ item.date }}</p>
@@ -23,7 +23,7 @@
                   </li>
                 </ul>
                 <p class="fs-7 text-secondary">
-                  TWD<span class="fs-5 fw-blod ms-1 text-black">{{
+                  TWD<span class="fs-5 fw-bold ms-1 text-black">{{
                     item.cartItemTotal
                   }}</span>
                 </p>

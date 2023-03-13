@@ -39,7 +39,10 @@
   </section>
   <footer class="bg-primary text-dark text-center p-1 p-lg-3">
     <p class="mb-1">
-      本網站僅供個人作品使用，<br class="d-lg-none">不提供商業用途<span class="mx-2">|</span>Amberhh
+      本網站僅供個人作品使用，<br class="d-lg-none" />不提供商業用途<span
+        class="mx-2"
+        >|</span
+      >Amberhh
     </p>
     <p>COPYRIGHT © 2023 All rights reserved.</p>
   </footer>

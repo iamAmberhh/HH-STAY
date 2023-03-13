@@ -1,9 +1,9 @@
 <template>
-      <VeeLoading
-      v-model:active="isLoading"
-      :color="color"
-      :is-full-page="fullPage"
-    />
+  <VeeLoading
+    v-model:active="isLoading"
+    :color="color"
+    :is-full-page="fullPage"
+  />
   <IndexBanner></IndexBanner>
   <PopularProduct :renderProduct="popularProducts"></PopularProduct>
   <SwiperComponent
@@ -45,7 +45,7 @@ export default {
       "popularProducts",
       "instagramProducts",
       "newestProducts",
-      "isLoading"
+      "isLoading",
     ]),
   },
   methods: {
