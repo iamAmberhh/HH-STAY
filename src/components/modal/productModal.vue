@@ -33,7 +33,7 @@
                 :class="{ 'is-invalid': errors['標題'] }"
                 placeholder="請輸入標題"
                 rules="required"
-                v-model="selectProduct.data.title"
+                v-model="editProduct.data.title"
               ></VField>
               <ErrorMessage name="標題" class="invalid-feedback"></ErrorMessage>
             </div>
@@ -45,7 +45,7 @@
                 <select
                   class="form-select"
                   id="category"
-                  v-model="selectProduct.data.category"
+                  v-model="editProduct.data.category"
                 >
                   <option selected disabled>請選擇類別</option>
                   <option value="景點">景點</option>
@@ -67,7 +67,7 @@
                   :class="{ 'is-invalid': errors['單位'] }"
                   placeholder="請輸入單位"
                   rules="required"
-                  v-model="selectProduct.data.unit"
+                  v-model="editProduct.data.unit"
                 ></VField>
                 <ErrorMessage
                   name="單位"
@@ -86,7 +86,7 @@
                   type="number"
                   class="form-control"
                   placeholder="請輸入原價"
-                  v-model="selectProduct.data.origin_price"
+                  v-model="editProduct.data.origin_price"
                 />
               </div>
               <div class="mb-3 col-md-6">
@@ -99,7 +99,7 @@
                   type="number"
                   class="form-control"
                   placeholder="請輸入最低售價"
-                  v-model="selectProduct.data.price"
+                  v-model="editProduct.data.price"
                 />
               </div>
             </div>
@@ -116,7 +116,7 @@
                   :class="{ 'is-invalid': errors['地區'] }"
                   placeholder="請輸入地區"
                   rules="required"
-                  v-model="selectProduct.data.area"
+                  v-model="editProduct.data.area"
                 ></VField>
                 <ErrorMessage
                   name="地區"
@@ -135,7 +135,7 @@
                   :class="{ 'is-invalid': errors['兌換地點'] }"
                   placeholder="請輸入兌換地點"
                   rules="required"
-                  v-model="selectProduct.data.address"
+                  v-model="editProduct.data.address"
                 ></VField>
                 <ErrorMessage
                   name="兌換地點"
@@ -151,7 +151,7 @@
                   type="text"
                   class="form-control"
                   placeholder="請輸入地圖網址"
-                  v-model="selectProduct.data.mapUrl"
+                  v-model="editProduct.data.mapUrl"
                 />
               </div>
             </div>
@@ -162,7 +162,7 @@
                 <select
                   class="form-select"
                   id="ticketA"
-                  v-model="selectProduct.data.ticketA"
+                  v-model="editProduct.data.ticketA"
                 >
                   <option selected disabled>請選擇票種</option>
                   <option value="一般票">一般票</option>
@@ -184,7 +184,7 @@
                   type="number"
                   class="form-control"
                   placeholder="請輸入票種 A 售價"
-                  v-model="selectProduct.data.ticketA_price"
+                  v-model="editProduct.data.ticketA_price"
                 />
               </div>
             </div>
@@ -194,7 +194,7 @@
                 <select
                   class="form-select"
                   id="ticketB"
-                  v-model="selectProduct.data.ticketB"
+                  v-model="editProduct.data.ticketB"
                 >
                   <option selected disabled>請選擇票種</option>
                   <option value="一般票">一般票</option>
@@ -216,7 +216,7 @@
                   min="0"
                   class="form-control"
                   placeholder="請輸入售價"
-                  v-model="selectProduct.data.ticketB_price"
+                  v-model="editProduct.data.ticketB_price"
                 />
               </div>
             </div>
@@ -236,7 +236,7 @@
                     type="checkbox"
                     :id="'include' + key"
                     :value="fee"
-                    v-model="selectProduct.data.includes"
+                    v-model="editProduct.data.includes"
                   />
                   <label class="form-check-label" :for="'include' + key">{{
                     fee
@@ -259,7 +259,7 @@
                     type="checkbox"
                     :id="'exclude' + key"
                     :value="fee"
-                    v-model="selectProduct.data.excludes"
+                    v-model="editProduct.data.excludes"
                   />
                   <label class="form-check-label" :for="'exclude' + key">{{
                     fee
@@ -272,7 +272,7 @@
               <label for="description" class="form-label">商品描述</label>
               <ckeditor
                 :editor="editor"
-                v-model="selectProduct.data.description"
+                v-model="editProduct.data.description"
                 :config="editorConfig"
               ></ckeditor>
             </div>
@@ -280,7 +280,7 @@
               <label for="content" class="form-label">說明內容</label>
               <ckeditor
                 :editor="editor"
-                v-model="selectProduct.data.content"
+                v-model="editProduct.data.content"
                 :config="editorConfig"
               ></ckeditor>
             </div>
@@ -299,7 +299,7 @@
                     type="checkbox"
                     :id="'day' + key"
                     :value="day"
-                    v-model="selectProduct.data.openDate"
+                    v-model="editProduct.data.openDate"
                   />
                   <label class="form-check-label" :for="'day' + key">{{
                     day
@@ -313,7 +313,7 @@
                 <select
                   class="form-select"
                   id="itemFilter"
-                  v-model="selectProduct.data.itemFilter"
+                  v-model="editProduct.data.itemFilter"
                 >
                   <option selected disabled>請選擇分類</option>
                   <option value="熱門">熱門</option>
@@ -331,7 +331,7 @@
                     checked
                     :true-value="1"
                     :false-value="0"
-                    v-model="selectProduct.data.is_enabled"
+                    v-model="editProduct.data.is_enabled"
                   />
                   <label class="form-check-label" for="is_enabled"
                     >是否啟用銷售</label
@@ -348,20 +348,20 @@
                   type="text"
                   class="form-control"
                   placeholder="請輸入圖片連結"
-                  v-model="selectProduct.data.imageUrl"
+                  v-model="editProduct.data.imageUrl"
                 />
               </div>
               <img
-                v-if="selectProduct.data.imageUrl"
+                v-if="editProduct.data.imageUrl"
                 class="img-fluid"
                 alt="img"
-                :src="selectProduct.data.imageUrl"
+                :src="editProduct.data.imageUrl"
               />
             </div>
             <div>
               <h5>其他圖片</h5>
               <div
-                v-for="(image, key) in selectProduct.data.imagesUrl"
+                v-for="(image, key) in editProduct.data.imagesUrl"
                 :key="'image' + key"
               >
                 <div class="mb-3 d-flex flex-column align-items-end">
@@ -388,7 +388,7 @@
               <button
                 type="button"
                 class="btn btn-outline-primary text-dark btn-sm d-block w-100 mb-2"
-                @click="$emit('addImg')"
+                @click="addImg = true"
                 v-if="!addImg"
               >
                 新增圖片
@@ -404,7 +404,7 @@
                 <button
                   type="button"
                   class="btn btn-outline-primary text-dark btn-sm d-block w-50"
-                  @click="$emit('addNewImg')"
+                  @click="addNewImg"
                 >
                   確認
                 </button>
@@ -461,7 +461,7 @@
         <button
           type="button"
           class="btn btn-primary text-dark w-25"
-          @click="updateProduct"
+          @click="sentEditProduct"
         >
           確認
         </button>
@@ -482,14 +482,8 @@ export default {
     "isNew",
     "fees",
     "days",
-    "deleteImg",
-    "addImg",
-    "newImg",
-    "clearImg",
-    "addNewImg",
-    "updateProduct",
   ],
-  emits: ["addImg", "addNewImg", "newImg", "inputImg"],
+  emits: ["sentEditProduct"],
   data() {
     return {
       uploadImg: false,
@@ -515,26 +509,44 @@ export default {
           },
         },
       },
+      editProduct: {
+        data: {
+          title: " ",
+          category: "",
+          origin_price: null,
+          price: null,
+          unit: "",
+          description: "",
+          content: "",
+          is_enabled: 0,
+          imageUrl: "",
+          imagesUrl: [],
+          area: "",
+          address: "",
+          itemFilter: "",
+          ticketA: "",
+          ticketA_price: null,
+          ticketB: "",
+          ticketB_price: null,
+          includes: [],
+          excludes: [],
+          openDate: [],
+        },
+      },
+      addImg: false,
+      newImg: "",
     };
   },
   methods: {
     inputImg(e) {
-      let imgUrl = e.target.value;
-      this.$emit("inputImg", imgUrl);
+      this.newImg = e.target.value;
     },
     clearUploadImg() {
       this.uploadImgUrl = "";
       this.$refs.fileInput.value = "";
     },
     uploadNewImg() {
-      if (
-        !Object.prototype.hasOwnProperty.call(
-          this.selectProduct.data,
-          "imagesUrl"
-        )
-      ) {
-        this.selectProduct.data.imagesUrl = [];
-      }
+      this.checkImgUrl();
       const file = this.$refs.fileInput.files[0];
       const formData = new FormData();
       formData.append("file-to-upload", file);
@@ -548,13 +560,46 @@ export default {
         });
     },
     pushUploadImg() {
-      const arr = this.selectProduct.data.imagesUrl;
+      const arr = this.editProduct.data.imagesUrl;
       arr.push(this.uploadImgUrl);
       this.clearUploadImg();
+    },
+    sentEditProduct() {
+      this.$emit("sentEditProduct", this.editProduct);
+    },
+    addNewImg() {
+      this.checkImgUrl();
+      if (this.newImg.trim() === "") {
+        return;
+      }
+      this.editProduct.data.imagesUrl.push(this.newImg);
+      this.clearImg();
+    },
+    deleteImg(key) {
+      this.editProduct.data.imagesUrl.splice(key, 1);
+    },
+    clearImg() {
+      this.newImg = "";
+      this.addImg = false;
+    },
+    checkImgUrl() {
+      if (
+        !Object.prototype.hasOwnProperty.call(
+          this.editProduct.data,
+          "imagesUrl"
+        )
+      ) {
+        this.editProduct.data.imagesUrl = [];
+      }
     },
   },
   components: {
     ErrorMessage,
+  },
+  watch: {
+    productId() {
+      this.editProduct = JSON.parse(JSON.stringify(this.selectProduct));
+    },
   },
 };
 </script>

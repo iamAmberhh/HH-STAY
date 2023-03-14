@@ -21,14 +21,7 @@
         :fees="fees"
         :days="days"
         :clearProduct="clearProduct"
-        :updateProduct="updateProduct"
-        :deleteImg="deleteImg"
-        :clearImg="clearImg"
-        @addImg="addImgBtn"
-        :addImg="addImg"
-        @addNewImg="addNewImg"
-        @inputImg="inputImgUrl"
-        :newImg="newImg"
+        @sentEditProduct="editProduct"
       ></productModal>
     </div>
     <div
@@ -130,8 +123,7 @@ export default {
       productModal: "",
       deleteModal: "",
       productId: "",
-      addImg: false,
-      newImg: "",
+
       fees: [
         "餐飲折抵",
         "入園門票",
@@ -262,35 +254,10 @@ export default {
     clearProduct() {
       this.isNew = false;
       this.selectProduct.data = {};
-      this.clearImg();
     },
-    addImgBtn() {
-      this.addImg = true;
-    },
-    inputImgUrl(img) {
-      this.newImg = img;
-    },
-    addNewImg() {
-      if (
-        !Object.prototype.hasOwnProperty.call(
-          this.selectProduct.data,
-          "imagesUrl"
-        )
-      ) {
-        this.selectProduct.data.imagesUrl = [];
-      }
-      if (this.newImg.trim() === "") {
-        return;
-      }
-      this.selectProduct.data.imagesUrl.push(this.newImg);
-      this.clearImg();
-    },
-    deleteImg(key) {
-      this.selectProduct.data.imagesUrl.splice(key, 1);
-    },
-    clearImg() {
-      this.newImg = "";
-      this.addImg = false;
+    editProduct(modalProduct) {
+      this.selectProduct = modalProduct;
+      this.updateProduct();
     },
   },
   components: {
