@@ -102,7 +102,7 @@
                     <p class="ellipsis2 mb-2" v-html="product.description"></p>
                     <p class="card-text fs-7 text-end text-secondary">
                       TWD<span class="fs-5 fw-bold mx-1 text-black">{{
-                        product.price
+                        toThousand(product.price)
                       }}</span
                       >起
                     </p>
@@ -140,7 +140,11 @@ export default {
     ...mapState(productStore, ["enableProducts", "cityProducts", "isLoading"]),
   },
   methods: {
-    ...mapActions(productStore, ["getEnableProduct", "getCityProduct"]),
+    ...mapActions(productStore, [
+      "getEnableProduct",
+      "getCityProduct",
+      "toThousand",
+    ]),
     selectCity(name) {
       if (name === "taipei") {
         this.city.title = "台北";

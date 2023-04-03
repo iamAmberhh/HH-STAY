@@ -5,14 +5,19 @@
     :is-full-page="fullPage"
   />
   <IndexBanner />
-  <PopularProduct :renderProduct="popularProducts"></PopularProduct>
+  <PopularProduct
+    :renderProduct="popularProducts"
+    :toThousand="toThousand"
+  ></PopularProduct>
   <SwiperComponent
     :renderProduct="instagramProducts"
     :product="instagram"
+    :toThousand="toThousand"
   ></SwiperComponent>
   <SwiperComponent
     :renderProduct="newestProducts"
     :product="newest"
+    :toThousand="toThousand"
   ></SwiperComponent>
   <PopularCity />
 </template>
@@ -54,6 +59,7 @@ export default {
       "getPopularProduct",
       "getInstagramProduct",
       "getNewestProduct",
+      "toThousand",
     ]),
   },
   components: {

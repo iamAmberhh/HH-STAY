@@ -85,7 +85,7 @@ export default {
         .then((res) => {
           const { token, expired } = res.data;
           document.cookie = `hexschool=${token}; expires=${expired};`;
-          this.$router.push("/admin/products");
+          this.$router.push("/admin");
         })
         .catch(() => {
           alert(`登入失敗，請確認帳號密碼`);

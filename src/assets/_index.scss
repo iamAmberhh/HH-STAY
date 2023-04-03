@@ -133,11 +133,42 @@
     z-index: 10;
 }
 
+.city-recommend>li {
+    width: 33.33%;
+    transition: width 1s;
+
+    .content-tag {
+        opacity: 0;
+        transition: opacity 1s;
+    }
+
+    &:hover {
+        width: 50%;
+
+        .content-tag {
+            opacity: 1;
+        }
+    }
+}
+
 .city-tag {
     position: absolute;
     z-index: 10;
     bottom: 10px;
     left: 10px;
+}
+
+.content-tag {
+    position: absolute;
+    z-index: 10;
+    bottom: 10px;
+    left: 100px;
+    right: 0;
+
+    li {
+        background-color: $primary;
+        border-radius: 10px;
+    }
 }
 
 @keyframes move-down {

@@ -45,22 +45,3 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.top {
-  position: fixed;
-  z-index: 50;
-  right: 20px;
-  bottom: 45px;
-  cursor: pointer;
-  &:hover {
-    transform: rotate(5deg);
-  }
-}
-.top-content {
-  position: absolute;
-  top: 15px;
-  right: 21px;
-  text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff,
-    2px 2px 0 #fff;
-}
-</style>

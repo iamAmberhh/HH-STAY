@@ -30,9 +30,7 @@
             </button>
           </div>
           <div class="card-body">
-            <p
-              class="form-control flatpickr flatpickr-input fs-5 text-center mb-2"
-            >
+            <p class="form-control fs-5 text-center mb-2">
               使用日期：{{ item.date }}
             </p>
             <ul>
@@ -145,7 +143,7 @@
           <div class="card-footer text-end bg-white border-top-0">
             <p class="fs-7 text-secondary">
               TWD<span class="fs-5 fw-bold ms-1 text-black">{{
-                item.cartItemTotal
+                toThousand(item.cartItemTotal)
               }}</span>
             </p>
           </div>
@@ -159,7 +157,7 @@
       <div class="col-lg-5 text-center text-lg-end">
         <div class="mb-3">
           <span>{{ cartLength }}件商品</span>
-          <span>總共{{ cartTotal }}元</span>
+          <span>總共{{ toThousand(cartTotal) }}元</span>
         </div>
         <ul class="d-flex">
           <li class="me-2 w-50">
@@ -206,6 +204,7 @@ export default {
       "removeAllCart",
       "updateItemQty",
       "changeStatus",
+      "toThousand",
     ]),
   },
   mounted() {

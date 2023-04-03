@@ -88,6 +88,12 @@ export default defineStore("cartStore", {
         };
         return;
       }
+      if (typeof ticketA_price === "string") {
+        ticketA_price = parseInt(ticketA_price.replace(",", ""));
+      }
+      if (typeof ticketB_price === "string") {
+        ticketB_price = parseInt(ticketB_price.replace(",", ""));
+      }
       const data = {
         product_id,
         qty: 0,
@@ -178,6 +184,9 @@ export default defineStore("cartStore", {
       this.alert.title = title;
       this.alert.needCheck = needCheck;
       this.alert.status = status;
+    },
+    toThousand(n) {
+      return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
   },
 });

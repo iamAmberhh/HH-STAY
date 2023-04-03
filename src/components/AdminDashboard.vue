@@ -83,12 +83,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.nav-item:hover {
-  background: #ffdf65;
-}
-.nav-item > .router-link-exact-active {
-  background: #ffdf65;
-}
-</style>

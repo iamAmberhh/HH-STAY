@@ -109,5 +109,8 @@ export default defineStore("productStore", {
         return product.category === category;
       });
     },
+    toThousand(n) {
+      return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
   },
 });

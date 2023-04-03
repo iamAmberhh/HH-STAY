@@ -24,7 +24,7 @@
                 </ul>
                 <p class="fs-7 text-secondary">
                   TWD<span class="fs-5 fw-bold ms-1 text-black">{{
-                    item.cartItemTotal
+                    toThousand(item.cartItemTotal)
                   }}</span>
                 </p>
               </div>
@@ -37,7 +37,7 @@
       <div class="col-lg-5 text-end">
         <div class="mb-3">
           <span>{{ cartLength }}件商品</span>
-          <span>總共{{ cartTotal }}元</span>
+          <span>總共{{ toThousand(cartTotal) }}元</span>
         </div>
       </div>
     </div>
@@ -53,7 +53,7 @@ export default {
     ...mapState(cartStore, ["carts", "cartLength", "cartTotal"]),
   },
   methods: {
-    ...mapActions(cartStore, ["getCartList"]),
+    ...mapActions(cartStore, ["getCartList", "toThousand"]),
   },
 };
 </script>

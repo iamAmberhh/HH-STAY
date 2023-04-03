@@ -3,7 +3,7 @@
     <div class="container">
       <div class="d-lg-flex justify-content-around align-items-center">
         <h3 class="mb-5 me-lg-5 mb-lg-0 text-center text-lg-start">
-          選擇 HH STAY<br>享受 Happy Holiday
+          選擇 HH STAY<br />享受 Happy Holiday
         </h3>
         <ul class="d-flex justify-content-center">
           <li class="move move-up move-fast">

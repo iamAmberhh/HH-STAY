@@ -96,7 +96,7 @@
                   </ul>
                   <p class="fs-7 text-secondary">
                     TWD<span class="fs-5 fw-blod ms-1 text-black">{{
-                      item.cartItemTotal
+                      toThousand(item.cartItemTotal)
                     }}</span>
                   </p>
                 </div>
@@ -112,7 +112,7 @@
     >
       <div>
         <span>{{ cartLength }}件商品</span>
-        <span>總共{{ cartTotal }}元</span>
+        <span>總共{{ toThousand(cartTotal) }}元</span>
       </div>
       <RouterLink to="/cart" class="btn btn-primary text-dark">
         查看購物車
@@ -140,7 +140,7 @@ export default {
     ]),
   },
   methods: {
-    ...mapActions(cartStore, ["getCartList", "removeCartItem"]),
+    ...mapActions(cartStore, ["getCartList", "removeCartItem", "toThousand"]),
     showCartBlock() {
       this.$refs.cartHover.classList.remove("d-none");
     },

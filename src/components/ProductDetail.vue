@@ -23,7 +23,7 @@
         },
       }"
     >
-      <swiper-slide v-for="img in product.imagesUrl" :key="img">
+      <swiper-slide v-for="img in swiperImgs" :key="img">
         <div>
           <img
             :src="img"
@@ -234,7 +234,9 @@
       </div>
       <div class="d-none d-lg-block col-lg-4 offset-lg-1 text-dark fs-5">
         <p class="card-text text-center mb-3 bg-light rounded-2">
-          TWD<span class="fs-2 fw-blod m-1 text-black">{{ product.price }}</span
+          TWD<span class="fs-2 fw-blod m-1 text-black">{{
+            product.ticketA_price
+          }}</span
           >起
         </p>
         <form action="">
@@ -372,7 +374,7 @@
           <div class="modal-body">
             <p class="card-text text-center mb-3 bg-light rounded-2">
               TWD<span class="fs-2 fw-blod m-1 text-black">{{
-                product.price
+                product.ticketA_price
               }}</span
               >起
             </p>
@@ -452,7 +454,7 @@
                     <button type="button" class="border-0 bg-white fs-6">
                       <font-awesome-icon
                         icon="fa-solid fa-minus"
-                        class="border-primary border border-2 text-dark rounded-circle p-1 "
+                        class="border-primary border border-2 text-dark rounded-circle p-1"
                         @click="changeQty('ticketB', 'minus')"
                       />
                     </button>
@@ -466,7 +468,7 @@
                     <button type="button" class="border-0 bg-white fs-6">
                       <font-awesome-icon
                         icon="fa-solid fa-plus"
-                        class="border-primary border border-2 text-dark rounded-circle p-1 "
+                        class="border-primary border border-2 text-dark rounded-circle p-1"
                         @click="changeQty('ticketB', 'plus')"
                       />
                     </button>
@@ -530,7 +532,6 @@ export default {
       date: "2023-12-31",
       daysOfWeek: [],
       flatpickrConfig: {
-        wrap: true, // set wrap to true only when using 'input-group'
         altInput: true,
         altFormat: "Y-m-d",
         minDate: "today",
@@ -542,6 +543,7 @@ export default {
       cartItemTotal: 0,
       myTab: null,
       myModal: null,
+      swiperImgs:[]
     };
   },
   computed: {
@@ -549,7 +551,7 @@ export default {
   },
   methods: {
     ...mapActions(productStore, ["getProduct", "filterOpenDate"]),
-    ...mapActions(cartStore, ["addToCart"]),
+    ...mapActions(cartStore, ["addToCart", "toThousand"]),
     changeQty(ticket, status) {
       if (ticket === "ticketA") {
         if (status === "plus") {
@@ -615,9 +617,17 @@ export default {
   },
   watch: {
     product() {
+      this.swiperImgs = this.product.imagesUrl
+      this.swiperImgs.unshift(this.product.imageUrl)
       this.switchDescription(this.product.description);
       this.switchContent(this.product.content);
       this.setDefaultDate(this.product.category);
+      this.product.ticketA_price = this.toThousand(this.product.ticketA_price);
+      if (this.product.ticketB_price) {
+        this.product.ticketB_price = this.toThousand(
+          this.product.ticketB_price
+        );
+      }
     },
     openDate() {
       this.daysOfWeek = this.openDate;
@@ -636,8 +646,3 @@ export default {
   },
 };
 </script>
-<style>
-.swiper-slide {
-  height: auto;
-}
-</style>

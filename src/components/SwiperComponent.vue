@@ -74,7 +74,7 @@
                 </h5>
                 <p class="card-text fs-7 text-end text-secondary">
                   TWD<span class="fs-5 fw-bold mx-1 text-black">{{
-                    product.price
+                    toThousand(product.price)
                   }}</span
                   >起
                 </p>
@@ -98,7 +98,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 export default {
-  props: ["renderProduct", "product"],
+  props: ["renderProduct", "product", "toThousand"],
   data() {
     return {
       modules: [Navigation, Pagination],
