@@ -4,7 +4,7 @@
     :color="color"
     :is-full-page="fullPage"
   />
-  <IndexBanner></IndexBanner>
+  <IndexBanner />
   <PopularProduct :renderProduct="popularProducts"></PopularProduct>
   <SwiperComponent
     :renderProduct="instagramProducts"
@@ -14,15 +14,15 @@
     :renderProduct="newestProducts"
     :product="newest"
   ></SwiperComponent>
-  <PopularCity></PopularCity>
+  <PopularCity />
 </template>
 
 <script>
-import IndexBanner from "../../components/index/IndexBanner.vue";
-import PopularProduct from "../../components/index/PopularProduct.vue";
-import SwiperComponent from "../../components/SwiperComponent.vue";
-import PopularCity from "../../components/index/PopularCity.vue";
-import productStore from "../../stores/productStore";
+import IndexBanner from "@/components/index/IndexBanner.vue";
+import PopularProduct from "@/components/index/PopularProduct.vue";
+import SwiperComponent from "@/components/SwiperComponent.vue";
+import PopularCity from "@/components/index/PopularCity.vue";
+import productStore from "@/stores/productStore";
 import { mapState, mapActions } from "pinia";
 export default {
   data() {

@@ -6,7 +6,7 @@
       :is-full-page="fullPage"
     />
     <div class="modal fade" tabindex="-1" aria-hidden="true" ref="orderModal">
-      <orderModal :selectOrder="selectOrder"></orderModal>
+      <OrderModal :selectOrder="selectOrder"></OrderModal>
     </div>
     <div
       class="modal fade"
@@ -14,10 +14,10 @@
       aria-hidden="true"
       ref="deleteOrderModal"
     >
-      <deleteOrderModal
+      <DeleteOrderModal
         :selectOrder="selectOrder"
         :deleteOrder="deleteOrder"
-      ></deleteOrderModal>
+      ></DeleteOrderModal>
     </div>
 
     <h2 class="fs-3 mb-2">訂單列表</h2>
@@ -74,10 +74,10 @@
 
 <script>
 import Modal from "bootstrap/js/dist/modal";
-import orderModal from "../../components/modal/orderModal.vue";
+import OrderModal from "@/components/modal/OrderModal.vue";
 import adminOrderStore from "@/stores/adminOrderStore";
-import deleteOrderModal from "../../components/modal/deleteOrderModal.vue";
-import PagePagination from "../../components/PagePagination.vue";
+import DeleteOrderModal from "@/components/modal/DeleteOrderModal.vue";
+import PagePagination from "@/components/PagePagination.vue";
 import { mapState, mapActions } from "pinia";
 const { VITE_APP_API, VITE_APP_PATH } = import.meta.env;
 export default {
@@ -125,8 +125,8 @@ export default {
     },
   },
   components: {
-    orderModal,
-    deleteOrderModal,
+    OrderModal: OrderModal,
+    DeleteOrderModal,
     PagePagination,
   },
   mounted() {

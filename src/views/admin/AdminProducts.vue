@@ -14,7 +14,7 @@
       aria-hidden="true"
       ref="productModal"
     >
-      <productModal
+      <ProductModal
         :productId="productId"
         :selectProduct="selectProduct"
         :isNew="isNew"
@@ -22,7 +22,7 @@
         :days="days"
         :clearProduct="clearProduct"
         @sentEditProduct="editProduct"
-      ></productModal>
+      ></ProductModal>
     </div>
     <div
       class="modal fade"
@@ -32,11 +32,11 @@
       aria-hidden="true"
       ref="deleteModal"
     >
-      <deleteModal
+      <DeleteModal
         :clearProduct="clearProduct"
         :selectProduct="selectProduct"
         :deleteProduct="deleteProduct"
-      ></deleteModal>
+      ></DeleteModal>
     </div>
     <div class="text-end mb-2">
       <button
@@ -107,9 +107,9 @@
 </template>
 <script>
 import Modal from "bootstrap/js/dist/modal";
-import productModal from "../../components/modal/productModal.vue";
-import deleteModal from "../../components/modal/deleteModal.vue";
-import PagePagination from "../../components/PagePagination.vue";
+import ProductModal from "@/components/modal/ProductModal.vue";
+import DeleteModal from "@/components/modal/DeleteModal.vue";
+import PagePagination from "@/components/PagePagination.vue";
 
 import productStore from "@/stores/productStore";
 import { mapState, mapActions } from "pinia";
@@ -261,8 +261,8 @@ export default {
     },
   },
   components: {
-    productModal,
-    deleteModal,
+    ProductModal: ProductModal,
+    DeleteModal: DeleteModal,
     PagePagination,
   },
   mounted() {

@@ -24,13 +24,6 @@
       <p class="fs-2 mb-3">{{ alert.title }}</p>
       <div v-if="alert.needCheck">
         <div class="d-flex justify-content-center">
-          <!-- <button
-            class="btn btn-primary me-2"
-            type="button"
-            @click="closeAlertWindow"
-          >
-            取消
-          </button> -->
           <button class="btn btn-primary" @click="closeAlertWindow">
             沒問題
           </button>
@@ -59,12 +52,10 @@ export default {
       if (!this.alert.needCheck) {
         this.autoClose();
       }
-      //   document.body.style.overflow = "overlay";
     },
     closeAlertWindow() {
       this.alertModal.classList.remove("alert-active");
       this.closeAlert();
-      //   document.body.style.overflow = "auto";
     },
     autoClose() {
       setTimeout(() => {

@@ -17,9 +17,7 @@
         >
       </li>
       <li class="nav-item w-100">
-        <RouterLink
-          to="/admin/products"
-          class="nav-link p-2 d-flex align-items-center"
+        <RouterLink to="/admin" class="nav-link p-2 d-flex align-items-center"
           ><font-awesome-icon
             icon="fa-solid fa-ticket"
             class="mx-2"

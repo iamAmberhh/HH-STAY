@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import cartStore from "../../stores/cartStore.js";
+import cartStore from "@/stores/cartStore.js";
 import { mapState, mapActions } from "pinia";
 
 export default {

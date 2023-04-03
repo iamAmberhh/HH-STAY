@@ -4,7 +4,7 @@
     :color="color"
     :is-full-page="fullPage"
   />
-  <AlertWindow></AlertWindow>
+  <AlertWindow />
   <section class="container mb-max">
     <div class="text-center" v-if="!cartStatus">
       <p class="mb-3">購物車內還沒有商品，快去選購吧！</p>
@@ -179,7 +179,7 @@
 </template>
 
 <script>
-import cartStore from "../../stores/cartStore.js";
+import cartStore from "@/stores/cartStore.js";
 import { mapState, mapActions } from "pinia";
 
 export default {

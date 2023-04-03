@@ -4,7 +4,7 @@
     :color="color"
     :is-full-page="fullPage"
   />
-  <AlertWindow></AlertWindow>
+  <AlertWindow />
   <!-- 圖片輪播 -->
   <section class="container mt-max">
     <swiper
@@ -37,7 +37,7 @@
   <!-- 產品訊息 -->
   <section class="container my-5 my-lg-max">
     <div class="row">
-      <div class="col-lg-7 mb-5">
+      <div class="col-lg-7">
         <span class="bg-primary text-dark rounded-pill px-2 fs-6"
           ><font-awesome-icon icon="fa-solid fa-location-dot" class="me-1" />{{
             product.area
@@ -129,14 +129,15 @@
           >
             <ul class="list-style-disc ps-3 mb-5">
               <li>
-                購買後，HH STAY 會將票券QR code
+                購買後，HH STAY 會將票券 QR code
                 寄到您的電子信箱，請務必妥善留存。
               </li>
               <li>
                 下訂時請以「票券使用日」為主，下訂後即無法變更，敬請留意。
               </li>
               <li>
-                若需變更使用日期或場次，請於票券使用前7日，將整筆訂單取消後，重新下訂。
+                若需變更使用日期或場次，請於票券使用前 7
+                日，將整筆訂單取消後，重新下訂。
               </li>
               <li>
                 下單後請自行留意使用時間，請按照預訂日期及當天開放時間內使用，逾期失效。
@@ -173,10 +174,10 @@
             aria-labelledby="refund-tab"
           >
             <ul class="list-style-disc ps-3 mb-5">
-              <li>使用日期前30日，可全額退費</li>
-              <li>使用日期前15日，可退還70%之票券費用</li>
-              <li>使用日期前7日，可退還50%之票券費用</li>
-              <li>使用日期前6日起，恕無法受理退費</li>
+              <li>使用日期前 30 日，可全額退費</li>
+              <li>使用日期前 15 日，可退還 70% 之票券費用</li>
+              <li>使用日期前 7 日，可退還 50% 之票券費用</li>
+              <li>使用日期前 6 日起，恕無法受理退費</li>
             </ul>
             <p>
               <i class="fas fa-flag me-1"></i
@@ -193,7 +194,8 @@
             <ul class="list-style-disc ps-3 mb-3">
               <li>使用地點：{{ product.address }}</li>
               <li>
-                請務必於票券使用當日，出示QR code進行兌換，逾期失效(住宿券除外)
+                請務必於票券使用當日，出示 QR code
+                進行兌換，逾期失效(住宿券除外)
               </li>
             </ul>
             <iframe
@@ -211,6 +213,23 @@
               :src="`${product.mapUrl}`"
             ></iframe>
           </div>
+        </div>
+        <div class="d-flex justify-content-between mt-5">
+          <button
+            type="button"
+            class="backBtn me-2 btn btn-outline-primary text-dark"
+            @click="pageBack"
+          >
+            返回前頁
+          </button>
+          <button
+            type="button"
+            class="w-50 d-lg-none btn btn-primary text-dark"
+            data-bs-toggle="modal"
+            data-bs-target="#purchaseModal"
+          >
+            立即選購
+          </button>
         </div>
       </div>
       <div class="d-none d-lg-block col-lg-4 offset-lg-1 text-dark fs-5">
@@ -247,16 +266,16 @@
           <ul class="mb-5">
             <li class="mb-3 d-flex align-items-center">
               <label :for="product.ticketA" class="form-label w-100 mb-0 me-4"
-                >{{ product.ticketA }}
-                <span class="text-secondary"
-                  >$ {{ product.ticketA_price }}/{{ product.unit }}</span
+                >{{ product.ticketA }}<br />
+                <small class="text-secondary"
+                  >$ {{ product.ticketA_price }}/{{ product.unit }}</small
                 >
               </label>
               <div class="d-flex justify-content-center">
                 <button type="button" class="border-0 bg-white fs-6">
                   <font-awesome-icon
                     icon="fa-solid fa-minus"
-                    class="border-primary border border-2 text-dark rounded-circle p-1"
+                    class="border-primary border border-2 text-dark rounded-circle p-1 qty-button-hover"
                     @click="changeQty('ticketA', 'minus')"
                   />
                 </button>
@@ -270,7 +289,7 @@
                 <button type="button" class="border-0 bg-white fs-6">
                   <font-awesome-icon
                     icon="fa-solid fa-plus"
-                    class="border-primary border border-2 text-dark rounded-circle p-1"
+                    class="border-primary border border-2 text-dark rounded-circle p-1 qty-button-hover"
                     @click="changeQty('ticketA', 'plus')"
                   />
                 </button>
@@ -278,16 +297,16 @@
             </li>
             <li v-if="product.ticketB" class="mb-3 d-flex align-items-center">
               <label :for="product.ticketB" class="form-label w-100 mb-0 me-4"
-                >{{ product.ticketB }}
-                <span class="text-secondary"
-                  >$ {{ product.ticketB_price }}/{{ product.unit }}</span
+                >{{ product.ticketB }}<br />
+                <small class="text-secondary"
+                  >$ {{ product.ticketB_price }}/{{ product.unit }}</small
                 >
               </label>
               <div class="d-flex justify-content-center">
                 <button type="button" class="border-0 bg-white fs-6">
                   <font-awesome-icon
                     icon="fa-solid fa-minus"
-                    class="border-primary border border-2 text-dark rounded-circle p-1"
+                    class="border-primary border border-2 text-dark rounded-circle p-1 qty-button-hover"
                     @click="changeQty('ticketB', 'minus')"
                   />
                 </button>
@@ -301,7 +320,7 @@
                 <button type="button" class="border-0 bg-white fs-6">
                   <font-awesome-icon
                     icon="fa-solid fa-plus"
-                    class="border-primary border border-2 text-dark rounded-circle p-1"
+                    class="border-primary border border-2 text-dark rounded-circle p-1 qty-button-hover"
                     @click="changeQty('ticketB', 'plus')"
                   />
                 </button>
@@ -330,23 +349,7 @@
         </form>
       </div>
     </div>
-    <div class="d-flex justify-content-between">
-      <button
-        type="button"
-        class="w-50 me-2 btn btn-outline-primary text-dark"
-        @click="pageBack"
-      >
-        返回前頁
-      </button>
-      <button
-        type="button"
-        class="w-50 d-lg-none btn btn-primary text-dark"
-        data-bs-toggle="modal"
-        data-bs-target="#purchaseModal"
-      >
-        立即選購
-      </button>
-    </div>
+
     <div
       class="modal fade"
       id="purchaseModal"
@@ -449,7 +452,7 @@
                     <button type="button" class="border-0 bg-white fs-6">
                       <font-awesome-icon
                         icon="fa-solid fa-minus"
-                        class="border-primary border border-2 text-dark rounded-circle p-1"
+                        class="border-primary border border-2 text-dark rounded-circle p-1 "
                         @click="changeQty('ticketB', 'minus')"
                       />
                     </button>
@@ -463,7 +466,7 @@
                     <button type="button" class="border-0 bg-white fs-6">
                       <font-awesome-icon
                         icon="fa-solid fa-plus"
-                        class="border-primary border border-2 text-dark rounded-circle p-1"
+                        class="border-primary border border-2 text-dark rounded-circle p-1 "
                         @click="changeQty('ticketB', 'plus')"
                       />
                     </button>

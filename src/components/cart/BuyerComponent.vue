@@ -1,5 +1,5 @@
 <template>
-  <AlertWindow></AlertWindow>
+  <AlertWindow />
   <div class="col-lg-5">
     <VForm
       ref="form"
@@ -112,7 +112,7 @@
 </template>
 
 <script>
-import cartStore from "../../stores/cartStore";
+import cartStore from "@/stores/cartStore";
 import { mapState, mapActions } from "pinia";
 import { ErrorMessage } from "vee-validate";
 import OrderEstablished from "./OrderEstablished.vue";

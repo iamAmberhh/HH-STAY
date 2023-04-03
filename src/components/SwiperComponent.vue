@@ -1,11 +1,10 @@
 <template>
   <section class="container pb-5 py-md-5 position-relative">
     <h2 class="mb-3">{{ product.title }}</h2>
-    <ul
-      class="d-none d-md-flex justify-content-between fs-2 text-dark sales-product-btn"
-    >
+    <ul class="d-none d-md-flex justify-content-between fs-2 text-dark">
       <li
         style="cursor: pointer"
+        class="swiper-product-btn-prev"
         :class="{
           instagramPrevBtn: product.category === 'instagram',
           newestPrevBtn: product.category === 'newest',
@@ -18,6 +17,7 @@
       </li>
       <li
         style="cursor: pointer"
+        class="swiper-product-btn-next"
         :class="{
           instagramNextBtn: product.category === 'instagram',
           newestNextBtn: product.category === 'newest',
@@ -29,12 +29,11 @@
         />
       </li>
     </ul>
-    <div class="sales-product">
+    <div>
       <swiper
         :modules="modules"
         grabCursor
         :navigation="navigation"
-        class="top10-product"
         :loop="true"
         :slidesPerView="1"
         :spaceBetween="10"

@@ -70,6 +70,14 @@ const router = createRouter({
           path: "/:pathMatch(.*)*",
           component: () => import("../views/front/ErrorView.vue"),
         },
+        {
+          path: "/policy",
+          component: () => import("../views/front/PolicyView.vue"),
+        },
+        {
+          path: "/contact",
+          component: () => import("../views/front/ContactView.vue"),
+        },
       ],
     },
     {
@@ -81,7 +89,7 @@ const router = createRouter({
       component: () => import("../views/DashboardView.vue"),
       children: [
         {
-          path: "products",
+          path: "",
           component: () => import("../views/admin/AdminProducts.vue"),
         },
         {

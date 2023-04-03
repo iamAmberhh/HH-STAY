@@ -40,10 +40,7 @@
               />
               <label for="password">密碼</label>
             </div>
-            <div class="d-flex">
-              <a href="#" class="btn btn-outline-danger me-3 w-50 disabled"
-                >忘記密碼</a
-              >
+            <div class="d-flex justify-content-end">
               <button
                 type="button"
                 @click="submit"

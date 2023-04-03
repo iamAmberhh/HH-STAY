@@ -10,7 +10,7 @@
 <script>
 import OrderDetail from "./OrderDetail.vue";
 import BuyerComponent from "./BuyerComponent.vue";
-import cartStore from "../../stores/cartStore";
+import cartStore from "@/stores/cartStore";
 import { mapState, mapActions } from "pinia";
 
 export default {

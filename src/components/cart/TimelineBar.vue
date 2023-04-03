@@ -51,7 +51,7 @@
 
 <script>
 import { mapState } from "pinia";
-import cartStore from "../../stores/cartStore";
+import cartStore from "@/stores/cartStore";
 export default {
   computed: {
     ...mapState(cartStore, ["orderStatus"]),

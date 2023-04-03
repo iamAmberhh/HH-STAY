@@ -1,6 +1,5 @@
 <template>
-  <AlertWindow></AlertWindow>
-
+  <AlertWindow />
   <form>
     <div class="mb-3">
       <p>訂購資訊</p>
@@ -35,7 +34,7 @@
 </template>
 
 <script>
-import cartStore from "../../stores/cartStore";
+import cartStore from "@/stores/cartStore";
 import { mapState, mapActions } from "pinia";
 const { VITE_APP_API, VITE_APP_PATH } = import.meta.env;
 export default {

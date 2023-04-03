@@ -1,9 +1,9 @@
 <template>
-  <ProductDetail></ProductDetail>
+  <ProductDetail />
 </template>
 
 <script>
-import ProductDetail from "../../components/ProductDetail.vue";
+import ProductDetail from "@/components/ProductDetail.vue";
 
 export default {
   components: {

@@ -23,7 +23,9 @@ a {
 * ::selection {
     background: $primary;
 }
-
+* {
+    box-sizing: border-box;
+}
 .object-fit-cover {
     width: 100%;
     object-fit: cover;

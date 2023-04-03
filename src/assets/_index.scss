@@ -1,9 +1,10 @@
 .cart-hover-block {
     width: 330px;
     position: fixed;
-    right:2%;
-    top:11%;
+    right: 2%;
+    top: 11%;
     z-index: 1050;
+
     &::before {
         content: "";
         position: absolute;
@@ -15,10 +16,12 @@
         top: -25px;
         z-index: 1051;
     }
+
     @include media-breakpoint-up(md) {
         width: 500px;
-        top:10%;
-        &::before{
+        top: 10%;
+
+        &::before {
             top: -30px;
             right: 8%;
         }
@@ -30,28 +33,32 @@
     background: url(../image/banner-index.jpg) no-repeat;
     background-size: cover;
     background-position: center;
+
     @include media-breakpoint-up(md) {
         height: calc(100vh - 75px);
     }
 }
-.cart-dot{
+
+.cart-dot {
     position: absolute;
     top: -12px;
-    right:5px;
+    right: 5px;
     width: 25px;
     height: 25px;
     border-radius: 50%;
     background-color: $danger;
+
     @include media-breakpoint-up(md) {
-        right:32px;
+        right: 32px;
     }
-  }
+}
 
 .icon-bar {
     position: absolute;
     bottom: -10%;
     left: 5%;
     right: 5%;
+
     img {
         width: 30px;
     }
@@ -60,10 +67,12 @@
         img {
             width: 50px;
         }
-        li a{
+
+        li a {
             scale: 1.1;
             transition: 0.5s ease;
-            &:hover{
+
+            &:hover {
                 scale: 1;
                 transition: 0.5s ease;
             }
@@ -102,15 +111,29 @@
     }
 }
 
-.sales-product-btn{
+.top10-product-btn-left,
+.top10-product-btn-right {
+    &:hover {
+        color: $primary;
+        cursor: pointer;
+    }
+}
+
+.swiper-product-btn-prev {
     position: absolute;
     top: 45%;
     left: 0;
-    right: 0;
-    z-index:10;
+    z-index: 10;
 }
 
-.city-tag{
+.swiper-product-btn-next {
+    position: absolute;
+    top: 45%;
+    right: 0;
+    z-index: 10;
+}
+
+.city-tag {
     position: absolute;
     z-index: 10;
     bottom: 10px;
@@ -160,22 +183,27 @@
         top: 0px;
     }
 }
-.move{
+
+.move {
     position: relative;
     animation-duration: 3s;
     animation-delay: 2s;
     animation-iteration-count: infinite;
     animation-fill-mode: both;
-    &-up{
+
+    &-up {
         animation-name: move-down;
     }
-    &-down{
+
+    &-down {
         animation-name: move-up;
     }
-    &-slow{
+
+    &-slow {
         animation-delay: 3s;
     }
-    &-fast{
+
+    &-fast {
         animation-delay: 1s;
         animation-duration: 2s;
     }

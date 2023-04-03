@@ -79,6 +79,15 @@ export default defineStore("cartStore", {
         };
         return;
       }
+      if (ticketA_qty === 0 && ticketB_qty === 0) {
+        this.alertShow = true;
+        this.alert = {
+          title: "請選擇數量",
+          needCheck: true,
+          status: "info",
+        };
+        return;
+      }
       const data = {
         product_id,
         qty: 0,

@@ -1,7 +1,7 @@
 <template>
-  <NavbarComponent></NavbarComponent>
+  <NavbarComponent />
   <RouterView />
-  <FooterComponent></FooterComponent>
+  <FooterComponent />
   <div
     class="top flex-column"
     :class="{ 'd-flex': showTopBtn, 'd-none': !showTopBtn }"
@@ -14,8 +14,8 @@
 
 <script>
 import { RouterView } from "vue-router";
-import NavbarComponent from "../components/NavbarComponent.vue";
-import FooterComponent from "../components/FooterComponent.vue";
+import NavbarComponent from "@/components/NavbarComponent.vue";
+import FooterComponent from "@/components/FooterComponent.vue";
 
 export default {
   data() {
