@@ -1,0 +1,1 @@
+import{_ as t,k as n,r,o as a,b as s,e as o,F as c}from"./index-ac2a58f7.js";const i={components:{RouterView:n}};function m(p,_,l,u,f,d){const e=r("RouterView");return a(),s(c,null,[o(e,{name:"timeline"}),o(e,{name:"info"})],64)}const w=t(i,[["render",m]]);export{w as default};
