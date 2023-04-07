@@ -543,7 +543,7 @@ export default {
       cartItemTotal: 0,
       myTab: null,
       myModal: null,
-      swiperImgs:[]
+      swiperImgs: [],
     };
   },
   computed: {
@@ -617,8 +617,8 @@ export default {
   },
   watch: {
     product() {
-      this.swiperImgs = this.product.imagesUrl
-      this.swiperImgs.unshift(this.product.imageUrl)
+      this.swiperImgs = this.product.imagesUrl;
+      this.swiperImgs.unshift(this.product.imageUrl);
       this.switchDescription(this.product.description);
       this.switchContent(this.product.content);
       this.setDefaultDate(this.product.category);

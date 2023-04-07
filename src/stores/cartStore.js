@@ -103,7 +103,6 @@ export default defineStore("cartStore", {
         cartItemTotal:
           ticketA_qty * ticketA_price + ticketB_qty * ticketB_price,
       };
-
       axios
         .post(`${VITE_APP_API}v2/api/${VITE_APP_PATH}/cart`, { data })
         .then((res) => {

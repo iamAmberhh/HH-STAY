@@ -497,7 +497,6 @@ export default {
           "bold",
           "numberedList",
           "bulletedList",
-          "alignment",
           "undo",
           "redo",
           "Indent",

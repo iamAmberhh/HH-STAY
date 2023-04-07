@@ -127,7 +127,7 @@ export default {
   },
   methods: {
     switchDate(timestamp) {
-      let date = new Date(timestamp * 1000); 
+      let date = new Date(timestamp * 1000);
       let formatted_date = date.toISOString().slice(0, 10);
       return formatted_date;
     },
