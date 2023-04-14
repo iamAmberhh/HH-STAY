@@ -32,7 +32,6 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   props: ["selectOrder", "deleteOrder"],

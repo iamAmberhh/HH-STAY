@@ -92,7 +92,7 @@ import "swiper/scss/navigation";
 import "swiper/scss/pagination";
 
 export default {
-  props: ["renderProduct","toThousand"],
+  props: ["renderProduct", "toThousand"],
   data() {
     return {
       modules: [Navigation],

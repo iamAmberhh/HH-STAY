@@ -105,6 +105,7 @@
     <PagePagination :pages="pages" :renderData="getAllProduct"></PagePagination>
   </div>
 </template>
+
 <script>
 import Modal from "bootstrap/js/dist/modal";
 import ProductModal from "@/components/modal/ProductModal.vue";

@@ -86,7 +86,6 @@
     </div>
   </section>
 </template>
-
 <script>
 import { RouterLink } from "vue-router";
 

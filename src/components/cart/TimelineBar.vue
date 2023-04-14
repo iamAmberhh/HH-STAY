@@ -48,7 +48,6 @@
     </div>
   </section>
 </template>
-
 <script>
 import { mapState } from "pinia";
 import cartStore from "@/stores/cartStore";

@@ -1,7 +1,6 @@
 <template>
   <CityComponent />
 </template>
-
 <script>
 import CityComponent from "@/components/CityComponent.vue";
 

@@ -185,7 +185,11 @@ export default defineStore("cartStore", {
       this.alert.status = status;
     },
     toThousand(n) {
-      return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      if (typeof n === "number") {
+        return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      } else if (typeof n === "string") {
+        return n.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
     },
   },
 });

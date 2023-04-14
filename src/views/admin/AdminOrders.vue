@@ -71,7 +71,6 @@
     <PagePagination :pages="pages" :renderData="getOrder"></PagePagination>
   </div>
 </template>
-
 <script>
 import Modal from "bootstrap/js/dist/modal";
 import OrderModal from "@/components/modal/OrderModal.vue";

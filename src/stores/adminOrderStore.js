@@ -13,7 +13,6 @@ export default defineStore("adminOderStore", {
     marRevenue: 0,
     aprRevenue: 0,
     revenue: [0, 0],
-    bestSellerProduct: [],
   }),
   actions: {
     getOrder(pages = 1) {
@@ -63,7 +62,6 @@ export default defineStore("adminOderStore", {
         })
       ).then(() => {
         this.renderRevenueChart();
-        this.bestSellerChart();
         this.isLoading = false;
       });
     },
@@ -79,13 +77,6 @@ export default defineStore("adminOderStore", {
         }
       });
       this.revenue.push(this.marRevenue, this.aprRevenue, 0, 0);
-    },
-    bestSellerChart() {
-      this.bestSellerProduct = [];
-      this.allOrders.forEach((i) => {
-        this.bestSellerProduct.push(i.products);
-      });
-      console.log(this.bestSellerProduct);
     },
   },
 });

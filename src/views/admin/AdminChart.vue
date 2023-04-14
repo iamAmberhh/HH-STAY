@@ -20,18 +20,6 @@
         >
           每月營收
         </button>
-        <button
-          class="nav-link"
-          id="best-seller"
-          data-bs-toggle="tab"
-          data-bs-target="#best-seller-chart"
-          type="button"
-          role="tab"
-          aria-controls="best-seller-chart"
-          aria-selected="false"
-        >
-          熱銷商品
-        </button>
       </div>
     </nav>
     <div class="tab-content mt-3" id="nav-tabContent">
@@ -42,14 +30,6 @@
         aria-labelledby="revenue-chart"
       >
         <canvas id="revenueChart" ref="revenueChart"></canvas>
-      </div>
-      <div
-        class="tab-pane fade chart"
-        id="best-seller-chart"
-        role="tabpanel"
-        aria-labelledby="best-seller-chart"
-      >
-        <canvas id="bestSellerChart" ref="bestSellerChart"></canvas>
       </div>
     </div>
   </div>
@@ -112,27 +92,6 @@ export default {
     this.$http.defaults.headers.common["Authorization"] = token;
     this.getTotalPages();
     this.chartTab = new Tab(this.$refs.chartTab);
-
-    new Chart(this.$refs.bestSellerChart, {
-      type: "bar",
-      data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [
-          {
-            label: "# of Votes",
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-      },
-    });
   },
 };
 </script>

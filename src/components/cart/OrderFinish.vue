@@ -22,7 +22,6 @@
     </div>
   </section>
 </template>
-
 <script>
 import { RouterLink } from "vue-router";
 import cartStore from "@/stores/cartStore";

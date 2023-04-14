@@ -469,7 +469,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import { ErrorMessage } from "vee-validate";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";

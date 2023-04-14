@@ -32,7 +32,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import cartStore from "../stores/cartStore";
 import { mapState, mapActions } from "pinia";

@@ -211,7 +211,7 @@ export default {
       "enableProducts",
       "filterProducts",
       "isLoading",
-      "toThousand"
+      "toThousand",
     ]),
   },
   methods: {
