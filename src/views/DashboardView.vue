@@ -6,11 +6,9 @@
 </template>
 
 <script>
-import { RouterView } from "vue-router";
 import AdminDashboard from "@/components/AdminDashboard.vue";
 export default {
   components: {
-    RouterView,
     AdminDashboard,
   },
 };

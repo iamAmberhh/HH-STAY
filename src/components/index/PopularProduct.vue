@@ -20,18 +20,18 @@
       <div class="col-md-9 px-2">
         <swiper
           :modules="modules"
+          centeredSlides
           grabCursor
           :navigation="{
             nextEl: '.top10-product-btn-right',
             prevEl: '.top10-product-btn-left',
           }"
-          class="top10-product"
           :loop="true"
-          :slidesPerView="1"
+          :slidesPerView="1.2"
           :spaceBetween="10"
           :breakpoints="{
             768: {
-              slidesPerView: 2,
+              slidesPerView: 2.3,
             },
             992: {
               slidesPerView: 3,
@@ -41,7 +41,7 @@
         >
           <swiper-slide v-for="product in renderProduct" :key="product.id">
             <RouterLink :to="`/product/${product.id}`">
-              <div class="card shadow-sm overflow-hidden">
+              <div class="card card-hover shadow-sm overflow-hidden">
                 <div class="position-relative">
                   <div class="product-item-hover overflow-hidden">
                     <img
@@ -89,7 +89,6 @@ import { Navigation } from "swiper";
 // Import Swiper styles
 import "swiper/scss";
 import "swiper/scss/navigation";
-import "swiper/scss/pagination";
 
 export default {
   props: ["renderProduct", "toThousand"],

@@ -14,6 +14,7 @@
 * Vite 環境建置
 * 元件拆分、重複使用
 * Pinia Store 建置
+* 自建 alert 視窗元件
 
 ## 實作內容
 * 前台
@@ -35,7 +36,7 @@
 * Swiper
 * vue-axios
 * CKEditor 5
-* Fort Awesome
+* Font Awesome
 * VeeValidate
 * Flatpickr
 * GSAP

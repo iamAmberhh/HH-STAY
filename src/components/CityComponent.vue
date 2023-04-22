@@ -81,7 +81,7 @@
         </div>
         <ul class="mb-5" v-else>
           <li
-            class="card overflow-hidden mb-2"
+            class="card card-hover overflow-hidden mb-2"
             v-for="product in renderProduct"
             :key="product.id"
           >

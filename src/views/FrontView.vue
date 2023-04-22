@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import { RouterView } from "vue-router";
 import NavbarComponent from "@/components/NavbarComponent.vue";
 import FooterComponent from "@/components/FooterComponent.vue";
 
@@ -24,7 +23,6 @@ export default {
     };
   },
   components: {
-    RouterView,
     NavbarComponent,
     FooterComponent,
   },

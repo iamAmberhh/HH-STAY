@@ -418,7 +418,7 @@
                     <button type="button" class="border-0 bg-white fs-6">
                       <font-awesome-icon
                         icon="fa-solid fa-minus"
-                        class="border-primary border border-2 text-dark rounded-circle p-1"
+                        class="border-primary border border-2 text-dark rounded-circle p-1 qty-button-hover"
                         @click="changeQty('ticketA', 'minus')"
                       />
                     </button>
@@ -432,7 +432,7 @@
                     <button type="button" class="border-0 bg-white fs-6">
                       <font-awesome-icon
                         icon="fa-solid fa-plus"
-                        class="border-primary border border-2 text-dark rounded-circle p-1"
+                        class="border-primary border border-2 text-dark rounded-circle p-1 qty-button-hover"
                         @click="changeQty('ticketA', 'plus')"
                       />
                     </button>
@@ -454,7 +454,7 @@
                     <button type="button" class="border-0 bg-white fs-6">
                       <font-awesome-icon
                         icon="fa-solid fa-minus"
-                        class="border-primary border border-2 text-dark rounded-circle p-1"
+                        class="border-primary border border-2 text-dark rounded-circle p-1 qty-button-hover"
                         @click="changeQty('ticketB', 'minus')"
                       />
                     </button>
@@ -468,7 +468,7 @@
                     <button type="button" class="border-0 bg-white fs-6">
                       <font-awesome-icon
                         icon="fa-solid fa-plus"
-                        class="border-primary border border-2 text-dark rounded-circle p-1"
+                        class="border-primary border border-2 text-dark rounded-circle p-1 qty-button-hover"
                         @click="changeQty('ticketB', 'plus')"
                       />
                     </button>
@@ -525,7 +525,6 @@ export default {
       modules: [Pagination],
       pagination: {
         clickable: true,
-        // el: ".swiper-pagination",
         dynamicBullets: true,
       },
       description: "",

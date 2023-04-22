@@ -97,7 +97,9 @@
     width: 100%;
     height: auto;
 }
-
+.card-hover:hover{
+    border:2px solid $primary
+}
 .product-item-hover {
     img {
         transition: 1s ease;
@@ -133,20 +135,40 @@
     z-index: 10;
 }
 
-.city-recommend>li {
-    width: 33.33%;
-    transition: width 1s;
+.index-swiper .swiper-pagination-bullet {
+    background-color: $white;
+    opacity: 1;
+    width: 13px;
+    height: 13px;
+    border: 2px solid $primary;
+    box-shadow: 0 1rem 1.5rem rgba($black, .15);
 
-    .content-tag {
-        opacity: 0;
-        transition: opacity 1s;
+    &-active {
+        background-color: $primary;
+        width: 40px;
+        height: 15px;
+        border-radius: 10px;
     }
+    @include media-breakpoint-up(md){
+     display: none;   
+    }
+}
 
-    &:hover {
-        width: 50%;
-
+.city-recommend>li {
+    @include media-breakpoint-up(lg){
+        width: 33.33%;
+        transition: width 1s;
         .content-tag {
-            opacity: 1;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+    
+        &:hover {
+            width: 50%;
+    
+            .content-tag {
+                opacity: 1;
+            }
         }
     }
 }

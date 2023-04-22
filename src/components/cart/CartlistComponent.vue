@@ -47,7 +47,7 @@
                   <button type="button" class="border-0 bg-white fs-6">
                     <font-awesome-icon
                       icon="fa-solid fa-minus"
-                      class="border-primary border border-2 text-dark rounded-circle p-1"
+                      class="border-primary border border-2 text-dark rounded-circle p-1 qty-button-hover"
                       @click="
                         updateItemQty(
                           item.id,
@@ -71,7 +71,7 @@
                   <button type="button" class="border-0 bg-white fs-6">
                     <font-awesome-icon
                       icon="fa-solid fa-plus"
-                      class="border-primary border border-2 text-dark rounded-circle p-1"
+                      class="border-primary border border-2 text-dark rounded-circle p-1 qty-button-hover"
                       @click="
                         updateItemQty(
                           item.id,
@@ -99,7 +99,7 @@
                   <button type="button" class="border-0 bg-white fs-6">
                     <font-awesome-icon
                       icon="fa-solid fa-minus"
-                      class="border-primary border border-2 text-dark rounded-circle p-1"
+                      class="border-primary border border-2 text-dark rounded-circle p-1 qty-button-hover"
                       @click="
                         updateItemQty(
                           item.id,
@@ -123,7 +123,7 @@
                   <button type="button" class="border-0 bg-white fs-6">
                     <font-awesome-icon
                       icon="fa-solid fa-plus"
-                      class="border-primary border border-2 text-dark rounded-circle p-1"
+                      class="border-primary border border-2 text-dark rounded-circle p-1 qty-button-hover"
                       @click="
                         updateItemQty(
                           item.id,

@@ -29,17 +29,18 @@
         />
       </li>
     </ul>
-    <div>
+    <div class="index-swiper">
       <swiper
         :modules="modules"
         grabCursor
+        centeredSlides
         :navigation="navigation"
         :loop="true"
-        :slidesPerView="1"
+        :slidesPerView="1.2"
         :spaceBetween="10"
         :breakpoints="{
           768: {
-            slidesPerView: 2,
+            slidesPerView: 2.3,
           },
           992: {
             slidesPerView: 3,
@@ -49,7 +50,7 @@
       >
         <swiper-slide v-for="product in renderProduct" :key="product.id">
           <RouterLink :to="`/product/${product.id}`">
-            <div class="card shadow-sm overflow-hidden">
+            <div class="card card-hover shadow-sm overflow-hidden">
               <div class="position-relative">
                 <div class="product-item-hover overflow-hidden">
                   <img
@@ -90,17 +91,16 @@
 import { RouterLink } from "vue-router";
 
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Navigation, Pagination } from "swiper";
+import { Navigation } from "swiper";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css/pagination";
 
 export default {
   props: ["renderProduct", "product", "toThousand"],
   data() {
     return {
-      modules: [Navigation, Pagination],
+      modules: [Navigation],
       navigation: {
         nextEl: "",
         prevEl: "",
